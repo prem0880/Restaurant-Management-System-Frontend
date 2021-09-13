@@ -9,9 +9,14 @@ export class CategoryService {
 
   constructor(private http : HttpClient) { }
 
+  createCategory(category : Category){
+    return this.http.post("http://localhost:8083/api/addCategory", category, {responseType: 'text'});
+  }
+
+
   getAllCategory() : Observable<any>{
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get<Category>("http://localhost:8083/api/category");
+    return this.http.get<Category>("http://localhost:8083/api/getAllCategory");
   }
 }
 export class Category{

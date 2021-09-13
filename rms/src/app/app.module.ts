@@ -8,6 +8,7 @@ import { AddCategoryComponent } from './components/category/add-category/add-cat
 import { ViewCategoryComponent } from './components/category/view-category/view-category.component';
 import { ManageCategoryComponent } from './components/category/manage-category/manage-category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     NgbModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
     
   ],
