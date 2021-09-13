@@ -9,6 +9,7 @@ import { ViewCategoryComponent } from './components/category/view-category/view-
 import { ManageCategoryComponent } from './components/category/manage-category/manage-category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { UpdateCategoryComponent } from './components/category/update-category/update-category.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     AddCategoryComponent,
     ViewCategoryComponent,
     ManageCategoryComponent,
+    UpdateCategoryComponent,
 
   ],
   imports: [
