@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-view-category',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewCategoryComponent implements OnInit {
 
-  constructor() { }
+  public viewCategory?:any=[];
 
-  ngOnInit(): void {
+  constructor(private categoryService:CategoryService) { }
+
+  ngOnInit():any {
+    this.categoryService.getAllCategory().subscribe( response => {
+      this.viewCategory = response;
+      console.log(this.viewCategory);
+  });
   }
 
 }
