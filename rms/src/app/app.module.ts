@@ -10,6 +10,10 @@ import { ManageCategoryComponent } from './components/category/manage-category/m
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { UpdateCategoryComponent } from './components/category/update-category/update-category.component';
+import { AddMealComponent } from './components/meal/add-meal/add-meal.component';
+import { ViewMealComponent } from './components/meal/view-meal/view-meal.component';
+import { UpdateMealComponent } from './components/meal/update-meal/update-meal.component';
+import { ManageMealComponent } from './components/meal/manage-meal/manage-meal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
     ViewCategoryComponent,
     ManageCategoryComponent,
     UpdateCategoryComponent,
+    AddMealComponent,
+    ViewMealComponent,
+    UpdateMealComponent,
+    ManageMealComponent,
 
   ],
   imports: [

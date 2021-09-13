@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Category, CategoryService } from 'src/app/services/category.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class UpdateCategoryComponent implements OnInit {
   
   id?:any;
 
-  constructor(private route: ActivatedRoute,private router:Router,private categoryService:CategoryService) { 
+  constructor(private router:Router,private categoryService:CategoryService) { 
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       id : any
