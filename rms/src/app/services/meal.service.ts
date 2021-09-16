@@ -10,11 +10,16 @@ export class MealService {
   constructor(private http : HttpClient) { }
 
   createMeal(meal:Meal){
-    return this.http.post("http://localhost:8083/api/addMeal", meal, {responseType: 'text'});
+    return this.http.post("http://localhost:8083/api/addMeal",meal, {responseType: 'text'});
   }
   getAllMeal() : Observable<any>{
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
     return this.http.get<Meal>("http://localhost:8083/api/getAllMeal");
+  }
+
+  
+  getMealById(id:number):Observable<any>{
+    return this.http.get("http://localhost:8083/api/getMeal/" + id);
   }
 
   deleteMeal(id:number){

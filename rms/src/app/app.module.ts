@@ -14,6 +14,13 @@ import { AddMealComponent } from './components/meal/add-meal/add-meal.component'
 import { ViewMealComponent } from './components/meal/view-meal/view-meal.component';
 import { UpdateMealComponent } from './components/meal/update-meal/update-meal.component';
 import { ManageMealComponent } from './components/meal/manage-meal/manage-meal.component';
+import { CategoryService } from './services/category.service';
+import { MealService } from './services/meal.service';
+import { AddProductComponent } from './components/product/add-product/add-product.component';
+import { ViewProductComponent } from './components/product/view-product/view-product.component';
+import { ManageProductComponent } from './components/product/manage-product/manage-product.component';
+import { UpdateProductComponent } from './components/product/update-product/update-product.component';
+import { ProductService } from './services/product/product.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,10 @@ import { ManageMealComponent } from './components/meal/manage-meal/manage-meal.c
     ViewMealComponent,
     UpdateMealComponent,
     ManageMealComponent,
+    AddProductComponent,
+    ViewProductComponent,
+    ManageProductComponent,
+    UpdateProductComponent,
 
   ],
   imports: [
@@ -37,7 +48,12 @@ import { ManageMealComponent } from './components/meal/manage-meal/manage-meal.c
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    MealService,
+    ProductService
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

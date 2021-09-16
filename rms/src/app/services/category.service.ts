@@ -19,6 +19,10 @@ export class CategoryService {
     return this.http.get<Category>("http://localhost:8083/api/getAllCategory");
   }
 
+  getCategoryById(id:number):Observable<any>{
+    return this.http.get("http://localhost:8083/api/getCategory/" + id);
+  }
+
   deleteCategory(id:number){
     console.log(id);
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
@@ -37,6 +41,5 @@ export class CategoryService {
 export class Category{
   id?:number;
   name?:string;
-  product?:any;
 
 }
