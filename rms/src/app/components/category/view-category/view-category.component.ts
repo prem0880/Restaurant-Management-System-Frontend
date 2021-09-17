@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-view-category',
@@ -15,7 +15,6 @@ export class ViewCategoryComponent implements OnInit {
   ngOnInit():any {
     this.categoryService.getAllCategory().subscribe( response => {
       this.viewCategory = response;
-      console.log(this.viewCategory);
   });
   }
 

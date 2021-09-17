@@ -22,7 +22,6 @@ export class ManageProductComponent implements OnInit {
 
   deleteProduct(id:number,categoryId:number,mealId:number) {
     this.productService.deleteProduct(id,categoryId,mealId).subscribe(response => {
-          console.log(response);
           window.alert(response);
   });
   }

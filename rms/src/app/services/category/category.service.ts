@@ -7,33 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-  constructor(private http : HttpClient) { }
+  private baseUrl = 'http://localhost:8083/api/category';
+
+  constructor(private http: HttpClient) { }
 
   createCategory(category : Category){
-    return this.http.post("http://localhost:8083/api/addCategory", category, {responseType: 'text'});
+
+    return this.http.post(`${this.baseUrl}`, category,{responseType: 'text'});
   }
 
 
   getAllCategory() : Observable<any>{
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get<Category>("http://localhost:8083/api/getAllCategory");
-  }
-
-  getCategoryById(id:number):Observable<any>{
-    return this.http.get("http://localhost:8083/api/getCategory/" + id);
+    return this.http.get<Category>(`${this.baseUrl}`);
   }
 
   deleteCategory(id:number){
     console.log(id);
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete("http://localhost:8083/api/deleteCategory/" + id,  { headers, responseType: 'text'});
+    return this.http.delete(`${this.baseUrl}/${id}`, { headers, responseType: 'text'});
   }
 
   updateCategory(id:number,category:Category){
     console.log(id);
     console.log(category);
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put("http://localhost:8083/api/updateCategory/" + id, category, { headers, responseType: 'text'});
+    return this.http.put(`${this.baseUrl}/${id}`, category, { headers, responseType: 'text'});
   }
 
 

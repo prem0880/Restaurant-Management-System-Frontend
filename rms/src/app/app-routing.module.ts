@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
 import { AddCategoryComponent } from './components/category/add-category/add-category.component';
@@ -15,7 +15,7 @@ import { UpdateProductComponent } from './components/product/update-product/upda
 import { ViewProductComponent } from './components/product/view-product/view-product.component';
 
 const routes: Routes = [
-  {path:"admin",component:AdminComponent},
+ {path:"admin",component:AdminComponent},
  {path:"addCategory",component:AddCategoryComponent},
  {path:"viewCategory",component:ViewCategoryComponent},
  {path:"manageCategory",component:ManageCategoryComponent},

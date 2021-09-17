@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, CategoryService } from 'src/app/services/category.service';
+import { Category, CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-update-category',
@@ -25,7 +25,6 @@ export class UpdateCategoryComponent implements OnInit {
   }
 
   updateCategory(category : Category) {
-    console.log(category);
     this.categoryService.updateCategory(this.id,category).subscribe((response) => {
       window.alert(response);
     })

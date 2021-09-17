@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-import { MealService } from 'src/app/services/meal.service';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { MealService } from 'src/app/services/meal/meal.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -47,22 +47,23 @@ export class UpdateProductComponent implements OnInit {
 
     this.categoryObj={"id":cid};
     
-    }
+  }
     
-    getMeal(mid:number){
+  getMeal(mid:number){
+  
     this.mealObj={"id":mid}
     
-    }
+  }
 
-    updateProduct(product:Product) {
+  updateProduct(product:Product) {
       this.getCategory(product.category as any as number);
       this.getMeal(product.meal as any as number);
       product.category=this.categoryObj;
       product.meal=this.mealObj;
       this.productService.updateProduct(this.id,product).subscribe((response) => {
         window.alert(response);
-      })
-    }
+      });
+  }
     
 
 

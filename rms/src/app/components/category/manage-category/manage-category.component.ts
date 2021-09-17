@@ -1,7 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 
 @Component({
   selector: 'app-manage-category',
@@ -11,22 +10,18 @@ import { CategoryService } from 'src/app/services/category.service';
 export class ManageCategoryComponent implements OnInit {
 
   public viewCategory?:any=[];
-  
-
 
   constructor(private router:Router,private categoryService:CategoryService) { }
 
   ngOnInit():any {
     this.categoryService.getAllCategory().subscribe( response => {
       this.viewCategory = response;
-      console.log(this.viewCategory);
   });
   }
 
   deleteCategory(id:number) {
     this.categoryService.deleteCategory(id).subscribe(response => {
-          console.log(response);
-          window.alert(response);
+        window.alert(response);
   });
   }
 

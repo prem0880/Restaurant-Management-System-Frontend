@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MealService } from 'src/app/services/meal.service';
+import { MealService } from 'src/app/services/meal/meal.service';
 
 @Component({
   selector: 'app-view-meal',
@@ -16,7 +16,6 @@ export class ViewMealComponent implements OnInit {
   ngOnInit():any {
     this.mealService.getAllMeal().subscribe( response => {
       this.viewMeal = response;
-      console.log(this.viewMeal);
   });
   }
 

@@ -6,31 +6,28 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
+  private baseUrl = 'http://localhost:8083/api/product';
+
   constructor(private http : HttpClient) { }
 
   createProduct(product:Product){
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.post("http://localhost:8083/api/addProduct", product,{headers, responseType : 'text'} );
+    return this.http.post(`${this.baseUrl}`, product,{headers, responseType : 'text'} );
   }
-
 
   getAllProduct() : Observable<any>{
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get<Product>("http://localhost:8083/api/getAllProduct");
-
+    return this.http.get<Product>(`${this.baseUrl}`);
   }
 
-  deleteProduct(id:number,categoryId:number,mealId:number){
-    console.log(id);
+  deleteProduct(id:number,cid:number,mid:number){
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete("http://localhost:8083/api/category/"+categoryId+"/meal/"+mealId+"/deleteProduct/" + id,  { headers, responseType: 'text'});
+    return this.http.delete(`${this.baseUrl}/${id}/category/${cid}/meal/${mid}`, { headers, responseType: 'text'});
   }
 
   updateProduct(id:number,product:Product){
-    console.log(id);
-    console.log(product);
     const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put("http://localhost:8083/api/updateProduct/" + id, product, { headers, responseType: 'text'});
+    return this.http.put(`${this.baseUrl}/${id}`, product,{ headers, responseType: 'text'});
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Meal, MealService } from 'src/app/services/meal.service';
+import { Meal, MealService } from 'src/app/services/meal/meal.service';
 
 @Component({
   selector: 'app-update-meal',
@@ -24,9 +24,8 @@ export class UpdateMealComponent implements OnInit {
   }
 
   updateMeal(meal:Meal) {
-    console.log(meal);
     this.mealService.updateMeal(this.id,meal).subscribe((response) => {
       window.alert(response);
-    })
+    });
   }
 }

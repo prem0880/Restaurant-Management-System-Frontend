@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meal, MealService } from 'src/app/services/meal.service';
+import { Meal, MealService } from 'src/app/services/meal/meal.service';
 
 @Component({
   selector: 'app-add-meal',
@@ -14,7 +14,6 @@ export class AddMealComponent implements OnInit {
   }
 
   addMeal(meal:Meal) {
-    console.log(meal);
     this.mealService.createMeal(meal).subscribe((response) => {
       window.alert(response);
     })

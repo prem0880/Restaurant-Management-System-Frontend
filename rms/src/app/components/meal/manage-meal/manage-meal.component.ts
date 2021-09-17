@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MealService } from 'src/app/services/meal.service';
+import { MealService } from 'src/app/services/meal/meal.service';
 
 @Component({
   selector: 'app-manage-meal',
@@ -16,13 +16,11 @@ export class ManageMealComponent implements OnInit {
   ngOnInit():any {
     this.mealService.getAllMeal().subscribe( response => {
       this.viewMeal = response;
-      console.log(this.viewMeal);
   });
   }
 
   deleteMeal(id:number) {
     this.mealService.deleteMeal(id).subscribe(response => {
-          console.log(response);
           window.alert(response);
   });
   }

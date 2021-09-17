@@ -1,8 +1,6 @@
-import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Category, CategoryService } from 'src/app/services/category.service';
-import { Meal, MealService } from 'src/app/services/meal.service';
+import { CategoryService } from 'src/app/services/category/category.service';
+import { MealService } from 'src/app/services/meal/meal.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
