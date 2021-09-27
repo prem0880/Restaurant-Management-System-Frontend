@@ -54,8 +54,7 @@ addProduct(product:Product) {
   product.meal=this.mealObj;
   this.productService.createProduct(product).subscribe((response) => {
     window.alert(response);
-  },
-  error=>window.alert(error.error));
+  },error=>window.alert(error.error));
 }
 
 }
