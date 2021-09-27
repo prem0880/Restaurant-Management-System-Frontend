@@ -1,6 +1,6 @@
 <app-admin></app-admin>
 <div>
-    <table class="center">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
@@ -10,6 +10,8 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Tax</th>
+                <th>Created On</th>
+                <th>Updated On</th>
                 <th>Category</th>
                 <th>Meal </th>
                 <th colspan="2">Action</th>
@@ -24,6 +26,8 @@
                 <td>{{viewproduct.price}}</td>
                 <td>{{viewproduct.description}}</td>
                 <td>{{viewproduct.tax}}</td>
+                <td>{{viewproduct.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewproduct.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewproduct.category.name}}</td>
                 <td>{{viewproduct.meal.name}}</td>
                 <td><button (click)="deleteProduct(viewproduct.id,viewproduct.category.id,viewproduct.meal.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button></td>

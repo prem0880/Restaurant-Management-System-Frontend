@@ -18,6 +18,13 @@ import { AddProductComponent } from './components/product/add-product/add-produc
 import { ManageProductComponent } from './components/product/manage-product/manage-product.component';
 import { UpdateProductComponent } from './components/product/update-product/update-product.component';
 import { ProductService } from './services/product/product.service';
+import { AddCountryComponent } from './components/country/add-country/add-country.component';
+import { AddStateComponent } from './components/state/add-state/add-state.component';
+import { ViewStateComponent } from './components/state/view-state/view-state.component';
+import { StateService } from './services/state/state.service';
+import { CountryService } from './services/country/country.service';
+import { ManageCountryComponent } from './components/country/manage-country/manage-country.component';
+import { UpdateCountryComponent } from './components/country/update-country/update-country.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +39,11 @@ import { ProductService } from './services/product/product.service';
     AddProductComponent,
     ManageProductComponent,
     UpdateProductComponent,
+    AddCountryComponent,
+    AddStateComponent,
+    ViewStateComponent,
+    ManageCountryComponent,
+    UpdateCountryComponent,
 
   ],
   imports: [
@@ -45,7 +57,9 @@ import { ProductService } from './services/product/product.service';
   providers: [
     CategoryService,
     MealService,
-    ProductService
+    ProductService,
+    StateService,
+    CountryService
   
   ],
   bootstrap: [AppComponent]

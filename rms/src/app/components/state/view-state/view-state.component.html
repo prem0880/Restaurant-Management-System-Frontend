@@ -1,0 +1,36 @@
+<app-admin></app-admin>
+<div>
+    <form #userForm="ngForm" (ngSubmit)='getState(userForm.value)' style=" margin-left: 400px;">
+        <div class="form-group col-md-6">
+            <label for="countryname"> Select Country</label>
+            <select required class="form-control"  name="id" ngModel >
+              <option value="" selected disabled>Select Country</option>
+              <option *ngFor = "let c of viewCountry" [value]=c.id>{{ c.name }}</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Get State</button>
+    </form>
+    <br>
+    <table class="table" *ngIf="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created On</th>
+                <th>Updated On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let viewstate of viewState">
+                <td>{{viewstate.id}}</td>
+                <td>{{viewstate.name}}</td>
+                <td>{{viewstate.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewstate.updatedOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+              </tr>
+        </tbody>
+      </table>
+      
+</div>
+
+

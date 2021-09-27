@@ -43,5 +43,6 @@ export class CategoryService {
 export class Category{
   id?:number;
   name?:string;
-
+  createdOn?:string;
+  updatedOn?:string;
 }

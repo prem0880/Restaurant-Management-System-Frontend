@@ -36,15 +36,17 @@
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="categoryname"> Select Category </label>
+            <label for="categoryname">Category Name </label>
           <select class="form-control"  name="category" ngModel >
+            <option value="" selected disabled>Select Category</option>
             <option *ngFor = "let c of category" [value]=c.id>{{ c.name }}</option>
           </select>
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="mealname"> Select Meal </label>
+            <label for="mealname"> Meal Name  </label>
             <select class="form-control" name="meal" ngModel>
+              <option value="" selected disabled>Select Meal</option>
               <option *ngFor = "let m of meal" [value]=m.id>{{ m.name }}</option>
             </select>
           </div>

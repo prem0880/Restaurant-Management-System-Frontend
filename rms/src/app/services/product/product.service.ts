@@ -45,4 +45,6 @@ export class Product{
   tax?:number;
   category?:any;
   meal?:any;
+  createdOn?:string;
+  updatedOn?:string;
 }

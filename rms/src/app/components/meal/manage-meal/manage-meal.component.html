@@ -1,10 +1,12 @@
 <app-admin></app-admin>
 <div>
-    <table class="center">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Created On</th>
+                <th>Updated On</th>
                 <th colspan="2">Action</th>
             </tr>
         </thead>
@@ -12,8 +14,10 @@
             <tr *ngFor="let viewmeal of viewMeal">
                 <td>{{viewmeal.id}}</td>
                 <td>{{viewmeal.name}}</td>
-                <td><button (click)="deleteMeal(viewmeal.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button></td>
-                <td><button (click)="updateMeal(viewmeal.id)" class="btn btn-success" style="margin-left: 10px">Update</button></td>
+                <td>{{viewmeal.createdOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewmeal.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td><button (click)="deleteMeal(viewmeal.id)" class="btn btn-danger" >Delete</button></td>
+                <td><button (click)="updateMeal(viewmeal.id)" class="btn btn-success">Update</button></td>
               </tr>
         </tbody>
       </table>
