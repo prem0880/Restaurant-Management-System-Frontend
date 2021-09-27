@@ -9,11 +9,16 @@ import { MealService } from 'src/app/services/meal/meal.service';
 })
 export class ManageMealComponent implements OnInit {
 
-  public viewMeal?:any=[];
+  viewMeal?:any=[];
 
   constructor(private router:Router,private mealService:MealService) { }
 
   ngOnInit():any {
+    this.reloadData(); 
+
+  }
+
+  reloadData(){
     this.mealService.getAllMeal().subscribe( response => {
       this.viewMeal = response;
   });
@@ -22,11 +27,13 @@ export class ManageMealComponent implements OnInit {
   deleteMeal(id:number) {
     this.mealService.deleteMeal(id).subscribe(response => {
           window.alert(response);
-  });
+          this.reloadData();
+        },
+        error =>  window.alert(error.error));
   }
 
   updateMeal(id:number) {
-    this.router.navigate(["updateMeal"],{state:{id:id}});
+    this.router.navigate(["/updateMeal",id]);
   }
 
 }

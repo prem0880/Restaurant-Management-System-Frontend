@@ -10,13 +10,15 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 })
 export class AddProductComponent implements OnInit {
 
-  public category:any=[];
+  submitted:boolean=false;
 
-  public meal:any=[];
+  category:any=[];
 
-  public categoryObj: any=[] ;
+  meal:any=[];
 
-  public mealObj:any=[];
+  categoryObj: any=[] ;
+
+  mealObj:any=[];
 
   constructor(private categoryService:CategoryService,private mealService:MealService,private productService:ProductService) { }
 
@@ -52,7 +54,8 @@ addProduct(product:Product) {
   product.meal=this.mealObj;
   this.productService.createProduct(product).subscribe((response) => {
     window.alert(response);
-  })
+  },
+  error=>window.alert(error.error));
 }
 
 }

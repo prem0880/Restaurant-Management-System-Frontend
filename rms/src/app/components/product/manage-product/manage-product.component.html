@@ -10,8 +10,8 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Tax</th>
-                <th>Category Id</th>
-                <th>Meal Id</th>
+                <th>Category</th>
+                <th>Meal </th>
                 <th colspan="2">Action</th>
             </tr>
         </thead>
@@ -19,7 +19,7 @@
             <tr *ngFor="let viewproduct of viewProduct">
                 <td>{{viewproduct.id}}</td>
                 <td>{{viewproduct.name}}</td>
-                <td>{{viewproduct.image}}</td>
+                <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
                 <td>{{viewproduct.type}}</td>
                 <td>{{viewproduct.price}}</td>
                 <td>{{viewproduct.description}}</td>

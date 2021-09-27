@@ -8,6 +8,8 @@ import { Category, CategoryService } from 'src/app/services/category/category.se
 })
 export class AddCategoryComponent implements OnInit {
 
+  submitted:boolean=false;
+
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
@@ -16,7 +18,9 @@ export class AddCategoryComponent implements OnInit {
   addCategory(category : Category) {
     this.categoryService.createCategory(category).subscribe((response) => {
       window.alert(response);
-    });
+    },
+    error => window.alert(error.error)
+    );
   }
 
 }

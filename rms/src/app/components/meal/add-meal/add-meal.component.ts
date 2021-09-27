@@ -8,6 +8,8 @@ import { Meal, MealService } from 'src/app/services/meal/meal.service';
 })
 export class AddMealComponent implements OnInit {
 
+  submitted:boolean=false;
+
   constructor(private mealService:MealService) { }
 
   ngOnInit(): void {
@@ -16,6 +18,8 @@ export class AddMealComponent implements OnInit {
   addMeal(meal:Meal) {
     this.mealService.createMeal(meal).subscribe((response) => {
       window.alert(response);
-    })
+    },
+    error => window.alert(error.error)
+    );
   }
 }

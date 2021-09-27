@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Meal, MealService } from 'src/app/services/meal/meal.service';
 
 @Component({
@@ -9,23 +9,28 @@ import { Meal, MealService } from 'src/app/services/meal/meal.service';
 })
 export class UpdateMealComponent implements OnInit {
 
+  submitted:boolean=false;
   id?:any;
-
-  constructor(private router:Router,private mealService:MealService) { 
-    const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state as {
-      id : any
-    };
-    this.id = state.id;
-    console.log(this.id);
+  meal?:any;
+  constructor(private router:Router,private route:ActivatedRoute,private mealService:MealService) { 
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.mealService.getMealById(this.id).subscribe((data)=>{
+        this.meal=data;
+    },error=>console.log(error));
+
   }
 
   updateMeal(meal:Meal) {
     this.mealService.updateMeal(this.id,meal).subscribe((response) => {
       window.alert(response);
-    });
+      this.goToList();
+    },error=>window.alert(error.error));
+  }
+
+  goToList(){
+    this.router.navigate(['manageMeal']);
   }
 }
