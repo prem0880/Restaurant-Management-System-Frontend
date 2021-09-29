@@ -19,13 +19,15 @@ export class ManageCategoryComponent implements OnInit {
 
   reloadData(){
     this.categoryService.getAllCategory().subscribe( response => {
-      this.viewCategory = response;
+      console.log(response.data)
+      this.viewCategory = response.data;
+      console.log(this.viewCategory)
   });
   }
 
   deleteCategory(id:number) {
     this.categoryService.deleteCategory(id).subscribe(response => {
-        window.alert(response);
+        window.alert(response.message);
         this.reloadData();
       },
       error =>  window.alert(error.error));

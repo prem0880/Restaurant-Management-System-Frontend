@@ -14,20 +14,20 @@ export class AddStateComponent implements OnInit {
   constructor(private service : StateService, private countryService : CountryService,private router:Router) { }
 
   ngOnInit(): void {
-    this.countryService.getAllCountry().subscribe((data)=>{
-      this.country = data;
+    this.countryService.getAllCountry().subscribe((response)=>{
+      this.country = response.data;
     })
   }
   addState(state:any) {
-    this.service.createState(state).subscribe((data)=>{
-      window.alert(data);
+    this.service.createState(state).subscribe((response)=>{
+      window.alert(response.message);
       this.gotoList();
     },
     error => window.alert(error.error)
     );
   }
   gotoList() {
-    this.router.navigate(['/viewstate']);
+    this.router.navigate(['/viewState']);
   }
 
 }

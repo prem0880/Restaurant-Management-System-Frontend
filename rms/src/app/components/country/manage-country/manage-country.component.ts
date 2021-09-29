@@ -18,14 +18,14 @@ export class ManageCountryComponent implements OnInit {
   }
 
   reloadData(){
-    this.countryService.getAllCountry().subscribe((data)=>{
-      this.viewCountry=data;
+    this.countryService.getAllCountry().subscribe((response)=>{
+      this.viewCountry=response.data;
     },error=>window.alert(error.error));
   }
 
   deleteCountry(id:number) {
     this.countryService.deleteCountry(id).subscribe(response => {
-        window.alert(response);
+        window.alert(response.message);
         this.reloadData();
       },error =>  window.alert(error.error));
   }

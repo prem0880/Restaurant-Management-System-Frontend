@@ -17,7 +17,8 @@ export class AddCategoryComponent implements OnInit {
 
   addCategory(category : Category) {
     this.categoryService.createCategory(category).subscribe((response) => {
-      window.alert(response);
+      console.log(response.message)
+      window.alert(response.message);
     },
     error => window.alert(error.error)
     );

@@ -1,37 +1,33 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponse } from '../response/HttpResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/country';
 
   constructor(private http: HttpClient) { }
 
-  createCountry(country : Country){
-    return this.http.post(`${this.baseUrl}/addCountry`, country,{responseType: 'text'});
+  createCountry(country : Country):Observable<HttpResponse>{
+    return this.http.post(`${this.baseUrl}/add`, country);
   }
-  getAllCountry() : Observable<any>{
-    return this.http.get<Country>(`${this.baseUrl}/getAllCountry`);
+  getAllCountry() : Observable<HttpResponse>{
+    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
   }
-  deleteCountry(id:number){
-    console.log(id);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteCountry/${id}`, { headers, responseType: 'text'});
+  deleteCountry(id:number):Observable<HttpResponse>{
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-  updateCountry(id:number,country:Country){
-    console.log(id);
-    console.log(country);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateCountry/${id}`, country, { headers, responseType: 'text'});
+  updateCountry(id:number,country:Country):Observable<HttpResponse>{
+    return this.http.put(`${this.baseUrl}/update/${id}`, country);
   }
 
-  getCountryById(id:number){
-    return this.http.get(`${this.baseUrl}/getCountry/${id}`);
+  getCountryById(id:number):Observable<HttpResponse>{
+    return this.http.get(`${this.baseUrl}/get/${id}`);
   }
 }
 export class Country{

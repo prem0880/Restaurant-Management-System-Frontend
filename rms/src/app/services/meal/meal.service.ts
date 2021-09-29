@@ -1,37 +1,36 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponse } from '../response/HttpResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/meal';
 
   constructor(private http: HttpClient) { }
 
-  createMeal(meal: Meal) {
-    return this.http.post(`${this.baseUrl}/addMeal`, meal, { responseType: 'text' });
+  createMeal(meal: Meal): Observable<HttpResponse> {
+    return this.http.post(`${this.baseUrl}/add`, meal);
   }
 
 
-  getAllMeal(): Observable<any> {
-    return this.http.get<Meal>(`${this.baseUrl}/getAllMeal`);
+  getAllMeal(): Observable<HttpResponse> {
+    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
   }
 
-  getMealById(id:number){
-    return this.http.get(`${this.baseUrl}/getMeal/${id}`);
+  getMealById(id:number): Observable<HttpResponse>{
+    return this.http.get(`${this.baseUrl}/get/${id}`);
   }
 
-  deleteMeal(id: number) {
-    const headers = new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteMeal/${id}`, { headers, responseType: 'text' });
+  deleteMeal(id: number): Observable<HttpResponse> {
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-  updateMeal(id: number, meal: Meal) {
-    const headers = new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateMeal/${id}`, meal, { headers, responseType: 'text' });
+  updateMeal(id: number, meal: Meal): Observable<HttpResponse> {
+    return this.http.put(`${this.baseUrl}/update/${id}`, meal);
   }
 }
 export class Meal {

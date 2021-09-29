@@ -18,15 +18,19 @@ export class UpdateCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.categoryService.getCategoryById(this.id).subscribe((data)=>{
-      this.category=data;
+    this.categoryService.getCategoryById(this.id).subscribe((response)=>{
+      console.log(response.data)
+      this.category=response.data;
+      console.log(this.category)
     }, error => console.log(error));
     
   }
 
   updateCategory(category : Category) {
+    console.log(category)
     this.categoryService.updateCategory(this.id,category).subscribe((response) => {
-      window.alert(response);
+      console.log(response.message)
+      window.alert(response.message);
       this.goToList();
     }, error => window.alert(error.error));
   }

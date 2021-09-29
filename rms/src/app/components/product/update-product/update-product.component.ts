@@ -30,15 +30,16 @@ export class UpdateProductComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.categoryService.getAllCategory().subscribe( response => {
-      this.category = response;
+      this.category = response.data;
   },error=>console.log(error));
 
   this.mealService.getAllMeal().subscribe( response => {
-    this.meal = response;
+    this.meal = response.data;
   },error=>console.log(error));
   
-  this.productService.getProductById(this.id).subscribe((data)=>{
-    this.product=data;
+  this.productService.getProductById(this.id).subscribe((response)=>{
+    this.product=response.data;
+    console.log(this.product)
   },error=>console.log(error));
   }
 
@@ -60,7 +61,7 @@ export class UpdateProductComponent implements OnInit {
       product.category=this.categoryObj;
       product.meal=this.mealObj;
       this.productService.updateProduct(this.id,product).subscribe((response) => {
-        window.alert(response);
+        window.alert(response.message);
         this.goToList();
       },error=>window.alert(error.error));
   }

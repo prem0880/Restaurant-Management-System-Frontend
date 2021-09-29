@@ -17,15 +17,15 @@ export class UpdateMealComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.mealService.getMealById(this.id).subscribe((data)=>{
-        this.meal=data;
+    this.mealService.getMealById(this.id).subscribe((response)=>{
+        this.meal=response.data;
     },error=>console.log(error));
 
   }
 
   updateMeal(meal:Meal) {
     this.mealService.updateMeal(this.id,meal).subscribe((response) => {
-      window.alert(response);
+      window.alert(response.message);
       this.goToList();
     },error=>window.alert(error.error));
   }

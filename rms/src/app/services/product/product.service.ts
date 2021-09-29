@@ -1,37 +1,34 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponse } from '../response/HttpResponse';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/product';
 
   constructor(private http : HttpClient) { }
 
-  createProduct(product:Product){
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.post(`${this.baseUrl}/addProduct`, product,{headers, responseType : 'text'} );
+  createProduct(product:Product): Observable<HttpResponse>{
+    return this.http.post(`${this.baseUrl}/add`, product);
   }
 
-  getAllProduct() : Observable<any>{
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get<Product>(`${this.baseUrl}/getAllProduct`);
+  getAllProduct() : Observable<HttpResponse>{
+    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
   }
 
-  getProductById(id:number){
-    return this.http.get(`${this.baseUrl}/getProduct/${id}`);
+  getProductById(id:number): Observable<HttpResponse>{
+    return this.http.get(`${this.baseUrl}/get/${id}`);
   }
 
-  deleteProduct(id:number,cid:number,mid:number){
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteProduct/${id}/category/${cid}/meal/${mid}`, { headers, responseType: 'text'});
+  deleteProduct(id:number): Observable<HttpResponse>{
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-  updateProduct(id:number,product:Product){
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateProduct/${id}`, product,{ headers, responseType: 'text'});
+  updateProduct(id:number,product:Product): Observable<HttpResponse>{
+    return this.http.put(`${this.baseUrl}/update/${id}`, product);
   }
 
 }

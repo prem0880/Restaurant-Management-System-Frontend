@@ -20,13 +20,13 @@ export class ManageMealComponent implements OnInit {
 
   reloadData(){
     this.mealService.getAllMeal().subscribe( response => {
-      this.viewMeal = response;
+      this.viewMeal = response.data;
   });
   }
 
   deleteMeal(id:number) {
     this.mealService.deleteMeal(id).subscribe(response => {
-          window.alert(response);
+          window.alert(response.message);
           this.reloadData();
         },
         error =>  window.alert(error.error));

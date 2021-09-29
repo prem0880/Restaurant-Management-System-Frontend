@@ -17,7 +17,7 @@ export class AddMealComponent implements OnInit {
 
   addMeal(meal:Meal) {
     this.mealService.createMeal(meal).subscribe((response) => {
-      window.alert(response);
+      window.alert(response.message);
     },
     error => window.alert(error.error)
     );

@@ -15,15 +15,15 @@ export class ViewStateComponent implements OnInit {
   constructor(private stateService : StateService, private countryService : CountryService) { }
 
   ngOnInit(): void {
-    this.countryService.getAllCountry().subscribe((data)=>{
-      this.viewCountry = data;
+    this.countryService.getAllCountry().subscribe((response)=>{
+      this.viewCountry =response.data;
   });
   }
 
   getState(country:Country) {
     console.log(country.id);
-    this.stateService.getStatesByCountry(country.id).subscribe((data)=>{
-      this.viewState = data;
+    this.stateService.getStatesByCountry(country.id).subscribe((response)=>{
+      this.viewState = response.data;
       this.display=true;
     })
   }

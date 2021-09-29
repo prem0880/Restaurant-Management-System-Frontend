@@ -17,8 +17,8 @@ export class AddCountryComponent implements OnInit {
   }
 
   addCountry(country:Country){
-    this.countryService.createCountry(country).subscribe((data)=>{
-      window.alert(data);
+    this.countryService.createCountry(country).subscribe((response)=>{
+      window.alert(response.message);
     },error=>window.alert(error.error));
 
   }

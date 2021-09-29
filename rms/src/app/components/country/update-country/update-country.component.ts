@@ -17,14 +17,14 @@ export class UpdateCountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.countryService.getCountryById(this.id).subscribe((data)=>{
-      this.country=data;
+    this.countryService.getCountryById(this.id).subscribe((response)=>{
+      this.country=response.data;
     }, error => console.log(error));
   }
 
   updateCountry(country:Country) {
     this.countryService.updateCountry(this.id,country).subscribe((response) => {
-      window.alert(response);
+      window.alert(response.message);
       this.goToList();
     }, error => window.alert(error.error));
   }

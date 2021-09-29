@@ -20,13 +20,13 @@ export class ManageProductComponent implements OnInit {
 
   reloadData(){
     this.productService.getAllProduct().subscribe( response => {
-      this.viewProduct = response;
+      this.viewProduct = response.data;
   });
   }
 
-  deleteProduct(id:number,categoryId:number,mealId:number) {
-    this.productService.deleteProduct(id,categoryId,mealId).subscribe(response => {
-          window.alert(response);
+  deleteProduct(id:number) {
+    this.productService.deleteProduct(id).subscribe(response => {
+          window.alert(response.message);
   },
   error=>window.alert(error.error));
   }

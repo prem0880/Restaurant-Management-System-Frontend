@@ -25,11 +25,11 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
 
     this.categoryService.getAllCategory().subscribe( response => {
-      this.category = response;
+      this.category = response.data;
   });
 
   this.mealService.getAllMeal().subscribe( response => {
-    this.meal = response;
+    this.meal = response.data;
 
   });
   
@@ -53,7 +53,7 @@ addProduct(product:Product) {
   product.category=this.categoryObj;
   product.meal=this.mealObj;
   this.productService.createProduct(product).subscribe((response) => {
-    window.alert(response);
+    window.alert(response.message);
   },error=>window.alert(error.error));
 }
 

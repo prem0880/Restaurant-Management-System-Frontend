@@ -1,0 +1,21 @@
+<div class="form-control">
+    <form #userForm="ngForm" (ngSubmit)='signUp(userForm.value)' style=" margin-left: 400px;">
+        <h3 style="margin-left: 130px;">Sign Up</h3>
+        <div class="form-group col-md-6">
+            <label for="productname">Username</label>
+            <input type="text" class="form-control" name="name"  ngModel required>
+          </div>
+          <br>
+        <div class="form-group col-md-6">
+            <label for="producturl">Phone Number</label>
+            <input type="number" class="form-control" name="phoneNumber"  ngModel required>
+          </div>
+          <br>
+          <div class="form-group col-md-6">
+            <label for="productbrand">Email Address</label>
+            <input type="email" class="form-control" name="email"  ngModel required>
+          </div>
+          <br>
+      <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Proceed for Address</button>
+      </form>
+</div>
