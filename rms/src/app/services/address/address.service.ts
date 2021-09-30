@@ -15,19 +15,18 @@ export class AddressService {
   constructor(private http:HttpClient) { }
 
   addAddress(address:Address) :Observable<HttpResponse>{
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    const newaddr = {
-      addressLine : address.addressLine,
-      city : address.city,
-      pincode : address.pincode
-    }
-    return this.http.post(`${this.baseUrl}/add`, newaddr);
+    return this.http.post(`${this.baseUrl}/add`, address);
   }
 
   getAddressByPhone(id:any) :Observable<HttpResponse>{
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.get<HttpResponse>(`${this.baseUrl}/get/${id}`);
+    return this.http.get<HttpResponse>(`${this.baseUrl}/get/phoneNumber/${id}`);
   }
+
+  getAddressByCustomerId(id:any) :Observable<HttpResponse>{
+    return this.http.get<HttpResponse>(`${this.baseUrl}/get/customer/${id}`);
+  }
+
+  
 }
 export class Address{
   id?:number;

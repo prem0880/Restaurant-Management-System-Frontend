@@ -34,8 +34,13 @@ export class AddAddressComponent implements OnInit {
 
 
   addAddress(address:Address) {
-    address.pincode = Number(address.pincode);
-    address.customer={"phoneNumber":this.id as any as number};
+    address.customer={
+      id:Number(this.id)
+    };
+    address.state={
+        id:Number(address.state)
+    };
+    console.log(address);
     this.addressService.addAddress(address).subscribe((response)=>{
       console.log(address);
       window.alert(response.message);
@@ -46,7 +51,8 @@ export class AddAddressComponent implements OnInit {
 
   }
   gotoList() {
-    this.router.navigate(['/dashboard']);
+    window.alert("Sign IN Now");
+    this.router.navigate(['/login']);
   }
 
 }

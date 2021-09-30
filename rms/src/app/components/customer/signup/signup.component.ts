@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     console.log(customer);
     this.customerService.createCustomer(customer).subscribe((response) => {
       window.alert(response.message);
-      this.router.navigate(["addAddress",customer.phoneNumber]);
+      this.router.navigate(["addAddress",response.data]);
     });
   }
 }

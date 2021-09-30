@@ -13,11 +13,8 @@
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="producttype">Select Product type</label>
-            <select class="form-control" name="type" ngModel>
-              <option>Veg</option>
-              <option>Non-Veg</option>
-            </select>
+            <label for="productdescription">Enter Product Description</label>
+            <input type="text" class="form-control" name="description"   ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
@@ -26,13 +23,16 @@
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="productdescription">Enter Product Description</label>
-            <input type="text" class="form-control" name="description"   ngModel required>
+            <label for="productTax">Enter Product Tax</label>
+            <input type="text" class="form-control" name="tax"   ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="productTax">Enter Product Tax</label>
-            <input type="text" class="form-control" name="tax"   ngModel required>
+            <label for="producttype">Select Product type </label>
+            <select class="form-control" name="type" ngModel>
+              <option>Veg</option>
+              <option>Non-Veg</option>
+            </select>
           </div>
           <br>
           <div class="form-group col-md-6">

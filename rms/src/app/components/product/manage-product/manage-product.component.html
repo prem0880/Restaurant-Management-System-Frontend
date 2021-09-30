@@ -6,14 +6,14 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Image</th>
-                <th>Type</th>
-                <th>Price</th>
                 <th>Description</th>
+                <th>Price</th>
                 <th>Tax</th>
-                <th>Created On</th>
-                <th>Updated On</th>
+                <th>Type</th>
                 <th>Category</th>
                 <th>Meal </th>
+                <th>Created On</th>
+                <th>Updated On</th>
                 <th colspan="2">Action</th>
             </tr>
         </thead>
@@ -22,14 +22,14 @@
                 <td>{{viewproduct.id}}</td>
                 <td>{{viewproduct.name}}</td>
                 <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
-                <td>{{viewproduct.type}}</td>
-                <td>{{viewproduct.price}}</td>
                 <td>{{viewproduct.description}}</td>
+                <td>{{viewproduct.price}}</td>
                 <td>{{viewproduct.tax}}</td>
-                <td>{{viewproduct.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td>{{viewproduct.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewproduct.type}}</td>
                 <td>{{viewproduct.category.name}}</td>
                 <td>{{viewproduct.meal.name}}</td>
+                <td>{{viewproduct.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewproduct.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td><button (click)="deleteProduct(viewproduct.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button></td>
                 <td><button (click)="updateProduct(viewproduct.id)" class="btn btn-success" style="margin-left: 10px">Update</button></td>
               </tr>

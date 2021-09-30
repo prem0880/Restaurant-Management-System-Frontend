@@ -27,10 +27,18 @@ export class CustomerService {
     return this.http.put(`${this.baseUrl}/update/${id}`, customer);
   }
 
+  loginValidation(credential:Customer):Observable<HttpResponse>{
+    const customer={
+      "email": credential.email,
+      "password":credential.password
+    }
+    return this.http.post(`${this.baseUrl}/login`, customer);
+  }
   
 }
 
 export class Customer{
+  id?:number;
   phoneNumber?:number;
   name?:string;
   email?:string;

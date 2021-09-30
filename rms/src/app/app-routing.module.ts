@@ -23,6 +23,8 @@ import { SignupComponent } from './components/customer/signup/signup.component';
 import { AddStateComponent } from './components/state/add-state/add-state.component';
 import { ViewStateComponent } from './components/state/view-state/view-state.component';
 import { DashboardComponent } from './components/customer/dashboard/dashboard.component';
+import { AddOrderComponent } from './components/customer/order/add-order/add-order.component';
+import { ProcessOrderComponent } from './components/customer/order/process-order/process-order.component';
 
 const routes: Routes = [
  {path:"admin",component:AdminComponent},
@@ -47,7 +49,9 @@ const routes: Routes = [
  {path:"updateAddress/:id",component:UpdateAddressComponent},
  {path:"signUp",component:SignupComponent},
  {path:"login",component:LoginComponent},
- {path:"dashboard",component:DashboardComponent}
+ {path:"dashboard",component:DashboardComponent},
+ {path:"addOrder/:id",component:AddOrderComponent},
+ {path:"processOrder",component:ProcessOrderComponent}
 
 ];
 

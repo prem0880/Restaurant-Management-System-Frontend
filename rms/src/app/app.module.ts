@@ -7,7 +7,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AddCategoryComponent } from './components/category/add-category/add-category.component';
 import { ManageCategoryComponent } from './components/category/manage-category/manage-category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateCategoryComponent } from './components/category/update-category/update-category.component';
 import { AddMealComponent } from './components/meal/add-meal/add-meal.component';
 import { UpdateMealComponent } from './components/meal/update-meal/update-meal.component';
@@ -35,6 +35,9 @@ import { UpdateCustomerComponent } from './components/customer/update-customer/u
 import { SignupComponent } from './components/customer/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/customer/dashboard/dashboard.component';
+import { AddOrderComponent } from './components/customer/order/add-order/add-order.component';
+import { ProcessOrderComponent } from './components/customer/order/process-order/process-order.component';
+import { OrderService } from './services/order/order.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { DashboardComponent } from './components/customer/dashboard/dashboard.co
     UpdateCustomerComponent,
     SignupComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddOrderComponent,
+    ProcessOrderComponent
 
   ],
   imports: [
@@ -69,8 +74,8 @@ import { DashboardComponent } from './components/customer/dashboard/dashboard.co
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     CategoryService,
@@ -79,7 +84,8 @@ import { DashboardComponent } from './components/customer/dashboard/dashboard.co
     StateService,
     CountryService,
     AddressService,
-    CustomerService 
+    CustomerService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

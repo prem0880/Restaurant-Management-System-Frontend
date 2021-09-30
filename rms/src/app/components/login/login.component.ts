@@ -21,6 +21,19 @@ export class LoginComponent implements OnInit {
     } else if(credential.email=='admin@gmail.com' && credential.password!='admin'){
       window.alert("admin login failed");
     }
+    else{
+      this.customerService.loginValidation(credential).subscribe(response=>{
+        console.log(response);
+        if(response.data!=null){
+          console.log(response.data);
+          window.alert("Welcome customer!");
+          localStorage.setItem("id",response.data);
+          this.router.navigate(['dashboard']);
+        }else{
+          window.alert("Login attempt failed!");
+        }
+    });
+    }
         
   }
 

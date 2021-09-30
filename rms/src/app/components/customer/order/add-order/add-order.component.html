@@ -1,0 +1,81 @@
+<app-dashboard></app-dashboard>
+<div class="container-fluid mb-3">
+    <h3 style="text-align: center;"><b><i>Add order</i></b></h3>
+    <form  (ngSubmit)="addOrderItem()" #userForm="ngForm">
+        <table id="addOrder" class="table table-bordered">
+            <tr>
+            <th>Type of Food Item</th>
+            <td>
+                <select class="form-control"  name="type"  ngModel (ngModelChange)="getType($event)">
+                    <option value="" selected disabled>Select the Type</option>
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
+                  </select>
+            </td>      
+            </tr>
+            <!-- <tr>
+            <th>Meal</th>
+            <td><select class="form-control"   name="meal" ngModel required>
+                <option value="" selected>Select the Meal</option>
+                <option *ngFor="let meal of mealList" [value]=meal.id>{{meal.name}}</option>
+            </select></td>
+            </tr> -->
+            <tr>
+                <th>Category</th>
+                <td><select class="form-control" name="category" (ngModelChange)="getCategory($event)" ngModel >
+                    <option value="" selected disabled>Select the Category</option>
+                    <option *ngFor="let category of categoryList" [value]=category.id>{{category.name}}</option>
+                </select></td>
+          
+            </tr>
+            <tr>
+                <th>Food</th>
+                <td><select class="form-control"  name="product" ngModel (ngModelChange)="getProduct($event)" >
+                    <option value="" selected disabled>Select the product</option>
+                    <option *ngFor="let product of productList" [value]=product.id>{{product.name}}</option>
+                </select></td>  
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" class="form-control" name="description" value={{product?.description}}   readonly="true"></td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td><input type="text" class="form-control" name="price" value={{product?.price}}   readonly="true"></td>
+            </tr>
+            <tr>
+                <th>Tax</th>
+                <td><input type="text" class="form-control" name="tax" value={{product?.tax}}   readonly="true"></td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td><input type="number" class="form-control" name="quantity"  ngModel (ngModelChange)="getQuantity($event)" placeholder="Enter the Quantity of Food Items"></td>
+            </tr>
+        </table>
+        <button class="btn btn-success" style="margin-left: 16cm;"  type="submit">Add Item</button>
+        <br>
+        <br>
+        <table *ngIf='length>0' class="table table-bordered">
+            <caption style="text-align: center;"><b><i>Order Item Details</i></b></caption>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let orderedItem of orderedItems">
+                    <td>{{orderedItem.product.name}}</td>
+                    <td>{{orderedItem.product.price}}</td>
+                    <td>{{orderedItem.quantity}}</td>
+                    <td>{{orderedItem.price}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Total Amount</th>
+                    <td>{{order?.totalPrice | number:'1.2-3'}}</td>
+                </tr>
+            </table>
+            <div *ngIf='length>0'>
+                <button id="btn1" style="margin-left: 24cm;" (click)="goToPayment()"  class="btn btn-primary">Confirm Order</button>&nbsp;&nbsp;<button id="btn2" class="btn btn-warning" type="reset">Cancel</button>
+            </div>
+    </form>
+</div>

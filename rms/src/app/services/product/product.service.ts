@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from '../category/category.service';
+import { Meal } from '../meal/meal.service';
 import { HttpResponse } from '../response/HttpResponse';
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,10 @@ export class ProductService {
     return this.http.get(`${this.baseUrl}/get/${id}`);
   }
 
+  getProductByTypeAndCategory(id:number,type:string): Observable<HttpResponse>{
+    return this.http.get(`${this.baseUrl}/category/${id}/type/${type}`);
+  }
+
   deleteProduct(id:number): Observable<HttpResponse>{
     return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
@@ -40,8 +46,8 @@ export class Product{
   price?:number;
   description?:string;
   tax?:number;
-  category?:any;
-  meal?:any;
+  category?:Category;
+  meal?:Meal;
   createdOn?:string;
   updatedOn?:string;
 }

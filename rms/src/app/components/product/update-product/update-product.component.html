@@ -13,8 +13,8 @@
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="producttype">Enter Product type</label>
-            <input type="text" class="form-control" name="type" ngModel [(ngModel)]="product.type" [value]="product.type" required>
+            <label for="productdescription">Enter Product Description</label>
+            <input type="text" class="form-control" name="description"  ngModel [(ngModel)]="product.description" [value]="product.description" required>
           </div>
           <br>
           <div class="form-group col-md-6">
@@ -23,18 +23,21 @@
           </div>
           <br>
           <div class="form-group col-md-6">
-            <label for="productdescription">Enter Product Description</label>
-            <input type="text" class="form-control" name="description"  ngModel [(ngModel)]="product.description" [value]="product.description" required>
-          </div>
-          <br>
-          <div class="form-group col-md-6">
             <label for="productTax">Enter Product Tax</label>
             <input type="text" class="form-control" name="tax" ngModel [(ngModel)]="product.tax" [value]="product.tax" required>
           </div>
           <br>
           <div class="form-group col-md-6">
+            <label for="producttype">Select Product type </label>
+            <select class="form-control" name="type" [(ngModel)]="product.type" ngModel>
+              <option>Veg</option>
+              <option>Non-Veg</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group col-md-6">
             <label for="categoryname">Category Name </label>
-          <select class="form-control"  name="category" ngModel >
+          <select class="form-control"  name="category" [(ngModel)]="category.name" ngModel >
             <option value="" selected disabled>Select Category</option>
             <option *ngFor = "let c of category" [value]=c.id>{{ c.name }}</option>
           </select>
@@ -42,7 +45,7 @@
           <br>
           <div class="form-group col-md-6">
             <label for="mealname"> Meal Name  </label>
-            <select class="form-control" name="meal" ngModel>
+            <select class="form-control" name="meal" [(ngModel)]="meal.name" ngModel>
               <option value="" selected disabled>Select Meal</option>
               <option *ngFor = "let m of meal" [value]=m.id>{{ m.name }}</option>
             </select>
