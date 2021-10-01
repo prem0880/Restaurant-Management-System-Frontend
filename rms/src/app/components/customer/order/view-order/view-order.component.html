@@ -1,0 +1,35 @@
+<app-dashboard></app-dashboard>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Serial No</th>
+                <th>Customer Name</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Price</th>
+                <th>Mode Of Payment</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vieworder of viewOrder">
+                <td>{{vieworder.id}}</td>
+                <td>{{vieworder.customer.name}}</td>
+                <td>{{vieworder.address.city}}</td>
+                <td>{{vieworder.address.pincode}}</td>
+                <td>{{vieworder.address.state.name}}</td>
+                <td>{{vieworder.address.state.country.name}}</td>
+                <td>{{vieworder.totalPrice}}</td>
+                <td>{{vieworder.modeOfPayment}}</td>
+                <td>{{vieworder.date}}</td>
+                <td>{{vieworder.status}}</td>
+              </tr>
+        </tbody>
+      </table>
+      
+</div>
+

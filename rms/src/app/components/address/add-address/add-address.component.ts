@@ -40,7 +40,7 @@ export class AddAddressComponent implements OnInit {
     address.state={
         id:Number(address.state)
     };
-    console.log(address);
+    console.log(address.state);
     this.addressService.addAddress(address).subscribe((response)=>{
       console.log(address);
       window.alert(response.message);

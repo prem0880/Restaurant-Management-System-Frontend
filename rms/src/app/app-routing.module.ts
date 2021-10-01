@@ -25,6 +25,11 @@ import { ViewStateComponent } from './components/state/view-state/view-state.com
 import { DashboardComponent } from './components/customer/dashboard/dashboard.component';
 import { AddOrderComponent } from './components/customer/order/add-order/add-order.component';
 import { ProcessOrderComponent } from './components/customer/order/process-order/process-order.component';
+import { ViewOrderComponent } from './components/customer/order/view-order/view-order.component';
+import { ViewOrdersComponent } from './components/customer/order/view-orders/view-orders.component';
+import { ViewProductComponent } from './components/product/view-product/view-product.component';
+import { ViewCustomerComponent } from './components/customer/view-customer/view-customer.component';
+import { ViewProfileComponent } from './components/customer/view-profile/view-profile.component';
 
 const routes: Routes = [
  {path:"admin",component:AdminComponent},
@@ -37,6 +42,7 @@ const routes: Routes = [
  {path:"addProduct",component:AddProductComponent},
  {path:"manageProduct",component:ManageProductComponent},
  {path:"updateProduct/:id",component:UpdateProductComponent},
+ {path:"viewProduct",component:ViewProductComponent},
  {path:"addCountry",component:AddCountryComponent},
  {path:"manageCountry",component:ManageCountryComponent},
  {path:"updateCountry/:id",component:UpdateCountryComponent},
@@ -44,6 +50,8 @@ const routes: Routes = [
  {path:"viewState",component:ViewStateComponent},
  {path:"manageCustomer",component:ManageCustomerComponent},
  {path:"updateCustomer/:id",component:UpdateCustomerComponent},
+ {path:"viewCustomer",component:ViewCustomerComponent},
+ {path:"viewProfile",component:ViewProfileComponent},
  {path:"addAddress/:id",component:AddAddressComponent},
  {path:"manageAddress",component:ManageAddressComponent},
  {path:"updateAddress/:id",component:UpdateAddressComponent},
@@ -51,7 +59,9 @@ const routes: Routes = [
  {path:"login",component:LoginComponent},
  {path:"dashboard",component:DashboardComponent},
  {path:"addOrder/:id",component:AddOrderComponent},
- {path:"processOrder",component:ProcessOrderComponent}
+ {path:"processOrder",component:ProcessOrderComponent},
+ {path:"viewOrders",component:ViewOrderComponent},
+ {path:"viewAllOrder",component:ViewOrdersComponent}
 
 ];
 

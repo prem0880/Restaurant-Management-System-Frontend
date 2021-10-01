@@ -28,7 +28,7 @@ truncate table orders;
 
 truncate table order_item;
 
-delete from orders where id=19;
+delete from orders where id=24;
 
 delete from order_item where id=6;
 

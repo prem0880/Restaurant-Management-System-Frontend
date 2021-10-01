@@ -19,8 +19,8 @@ export class CustomerService {
     return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
   }
 
-  getCustomerById(id:any):Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/get/${id}`);
+  getCustomerById(id:number):Observable<HttpResponse>{
+    return this.http.get(`${this.baseUrl}/get/${id}`);
   }
 
   updateCustomer(id:number,customer:Customer):Observable<HttpResponse>{

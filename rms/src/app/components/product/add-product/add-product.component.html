@@ -4,32 +4,58 @@
         <h3 style="margin-left: 130px;">Add Product</h3>
           <div class="form-group col-md-6">
             <label for="productname">Enter Product Name</label>
-            <input type="text" class="form-control" name="name"   ngModel required>
+            <input type="text" class="form-control" name="name" ngModel  #name="ngModel" required>
+            <div *ngIf='name.errors && name.touched' class="alert alert-danger">
+
+              <div  [hidden]='!name.errors.required'> Provide Product Name</div>
+          </div>
+  
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producturl">Enter Product Image Url</label>
-            <input type="text" class="form-control" name="image"   ngModel required>
+            <input type="text" class="form-control" name="image"  #image="ngModel" ngModel required>
+          <div *ngIf='image.errors && image.touched' class="alert alert-danger">
+
+              <div [hidden]='!image.errors.required'> Provide Product Image</div>
+          </div>
+  
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="productdescription">Enter Product Description</label>
-            <input type="text" class="form-control" name="description"   ngModel required>
+            <input type="text" class="form-control" name="description"  #description="ngModel" ngModel required>
+            <div *ngIf='description.errors && description.touched' class="alert alert-danger">
+
+              <div [hidden]='!description.errors.required'> Provide Product Description</div>
+          </div>
+  
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="productPrice">Enter Product Price</label>
-            <input type="text" class="form-control" name="price"   ngModel required>
+            <input type="text" class="form-control" name="price" #price="ngModel"  ngModel required>
+            <div *ngIf='price.errors && price.touched' class="alert alert-danger">
+
+              <div [hidden]='!price.errors.required'> Provide Product Price</div>
           </div>
+  
+          </div>
+
           <br>
           <div class="form-group col-md-6">
             <label for="productTax">Enter Product Tax</label>
-            <input type="text" class="form-control" name="tax"   ngModel required>
+            <input type="text" class="form-control" name="tax" #tax="ngModel"   ngModel required>
+            <div *ngIf='tax.errors && tax.touched' class="alert alert-danger">
+
+              <div [hidden]='!tax.errors.required'> Provide Product tax</div>
+          </div>
+  
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producttype">Select Product type </label>
-            <select class="form-control" name="type" ngModel>
+            <select class="form-control" name="type" ngModel >
               <option>Veg</option>
               <option>Non-Veg</option>
             </select>
@@ -41,11 +67,11 @@
             <option value="" selected disabled>Select Category</option>
             <option *ngFor = "let c of category" [value]=c.id>{{ c.name }}</option>
           </select>
-          </div>
+        </div>
           <br>
           <div class="form-group col-md-6">
             <label for="mealname"> Meal Name  </label>
-            <select class="form-control" name="meal" ngModel>
+            <select class="form-control" name="meal" ngModel >
               <option value="" selected disabled>Select Meal</option>
               <option *ngFor = "let m of meal" [value]=m.id>{{ m.name }}</option>
             </select>

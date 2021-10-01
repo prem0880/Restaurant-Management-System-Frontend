@@ -38,6 +38,11 @@ import { DashboardComponent } from './components/customer/dashboard/dashboard.co
 import { AddOrderComponent } from './components/customer/order/add-order/add-order.component';
 import { ProcessOrderComponent } from './components/customer/order/process-order/process-order.component';
 import { OrderService } from './services/order/order.service';
+import { ViewOrderComponent } from './components/customer/order/view-order/view-order.component';
+import { ViewOrdersComponent } from './components/customer/order/view-orders/view-orders.component';
+import { ViewProductComponent } from './components/product/view-product/view-product.component';
+import { ViewCustomerComponent } from './components/customer/view-customer/view-customer.component';
+import { ViewProfileComponent } from './components/customer/view-profile/view-profile.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +71,12 @@ import { OrderService } from './services/order/order.service';
     LoginComponent,
     DashboardComponent,
     AddOrderComponent,
-    ProcessOrderComponent
+    ProcessOrderComponent,
+    ViewOrderComponent,
+    ViewOrdersComponent,
+    ViewProductComponent,
+    ViewCustomerComponent,
+    ViewProfileComponent
 
   ],
   imports: [

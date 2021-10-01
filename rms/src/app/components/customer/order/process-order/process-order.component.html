@@ -2,7 +2,7 @@
 <div class="container fluid mb-3">
     <h3 style="text-align: center;"><b><i>Process Order</i></b></h3>
     <form [formGroup]="ProcessOrderForm" (ngSubmit)="processOrder()">
-        <table class="table table-hover">
+        <table class="styled-table" style="height: 50px;width: 75%;margin-left: 5cm;">
             <tr>
                 <th>Customer Name</th>
                 <td>{{customer?.name}}</td>
@@ -20,6 +20,14 @@
             <tr> 
                 <th>City</th>
                 <td>{{address[0].city}}</td>
+            </tr>
+            <tr> 
+                <th>State</th>
+                <td>{{address[0].state.name}}</td>
+            </tr>
+            <tr> 
+                <th>Country</th>
+                <td>{{address[0].state.country.name}}</td>
             </tr>
             <tr>
                 <th>Pincode</th>

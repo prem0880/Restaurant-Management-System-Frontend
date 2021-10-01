@@ -13,8 +13,6 @@ export class OrderService {
 
   private baseUrl = 'http://localhost:8083/order';
 
-  private baseUrl1 = 'http://localhost:8083';
-
   constructor(private http:HttpClient) { }
 
   addOrder(order:Order) :Observable<HttpResponse>{
@@ -26,14 +24,24 @@ export class OrderService {
     return this.http.get(`${this.baseUrl}/orderId/${customerId}`)
   }
 
+  getOrderByCustomerId(customerId:number):Observable<HttpResponse>
+  {
+    return this.http.get(`${this.baseUrl}/customer/${customerId}`)
+  }
+
+  getAllOrder():Observable<HttpResponse>
+  {
+    return this.http.get(`${this.baseUrl}/getAll`)
+  }
+
   addOrderItem(orderItem:OrderItem):Observable<HttpResponse>
   {
-    return this.http.post(`${this.baseUrl1}/order-item/add`,orderItem)
+    return this.http.post(`http://localhost:8083/order-item/add`,orderItem)
   }
 
   getOrderedItems(orderId:number):Observable<HttpResponse>
   {
-    return this.http.get(`${this.baseUrl1}`+'/order-item/get-items/'+`${orderId}`)
+    return this.http.get(`http://localhost:8083/order-item/get-items/${orderId}`)
   }
   getOrderById(orderId:number):Observable<HttpResponse> 
   {
@@ -54,4 +62,6 @@ export class Order{
   status?:string;
   customer?:Customer;
   address?:Address;
+  createdOn?:string;
+  updatedOn?:string;
 }

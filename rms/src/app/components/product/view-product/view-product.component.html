@@ -1,4 +1,4 @@
-<app-admin></app-admin>
+<app-dashboard></app-dashboard>
 <div>
     <table class="table">
         <thead>
@@ -12,9 +12,6 @@
                 <th>Type</th>
                 <th>Category</th>
                 <th>Meal </th>
-                <th>Created On</th>
-                <th>Updated On</th>
-                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,10 +25,6 @@
                 <td>{{viewproduct.type}}</td>
                 <td>{{viewproduct.category.name}}</td>
                 <td>{{viewproduct.meal.name}}</td>
-                <td>{{viewproduct.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td>{{viewproduct.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td><button (click)="deleteProduct(viewproduct.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button></td>
-                <td><button (click)="updateProduct(viewproduct.id)" class="btn btn-success" style="margin-left: 10px">Update</button></td>
               </tr>
         </tbody>
       </table>
