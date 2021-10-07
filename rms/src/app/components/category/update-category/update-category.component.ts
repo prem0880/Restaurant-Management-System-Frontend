@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, CategoryService } from 'src/app/services/category/category.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-update-category',
@@ -13,7 +14,7 @@ export class UpdateCategoryComponent implements OnInit {
   id?:any;
   category?:any;
 
-  constructor(private router:Router,private route:ActivatedRoute,private categoryService:CategoryService) { 
+  constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private categoryService:CategoryService) { 
   }
 
   ngOnInit(): void {
@@ -30,9 +31,14 @@ export class UpdateCategoryComponent implements OnInit {
     console.log(category)
     this.categoryService.updateCategory(this.id,category).subscribe((response) => {
       console.log(response.message)
-      window.alert(response.message);
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
       this.goToList();
-    }, error => window.alert(error.error));
+    });
   }
 
   goToList(){

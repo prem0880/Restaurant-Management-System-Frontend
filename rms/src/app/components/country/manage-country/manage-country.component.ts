@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountryService } from 'src/app/services/country/country.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-manage-country',
@@ -11,7 +12,7 @@ export class ManageCountryComponent implements OnInit {
 
   viewCountry?:any=[];
 
-  constructor(private router:Router,private countryService:CountryService) { }
+  constructor(private router:Router,private toast:NotificationService,private countryService:CountryService) { }
 
   ngOnInit():any {
     this.reloadData();  
@@ -25,9 +26,15 @@ export class ManageCountryComponent implements OnInit {
 
   deleteCountry(id:number) {
     this.countryService.deleteCountry(id).subscribe(response => {
-        window.alert(response.message);
-        this.reloadData();
-      },error =>  window.alert(error.error));
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
+      
+      this.reloadData();
+      });
   }
 
   updateCountry(id:number) {

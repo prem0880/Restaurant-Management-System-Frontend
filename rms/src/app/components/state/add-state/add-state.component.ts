@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountryService } from 'src/app/services/country/country.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { StateService } from 'src/app/services/state/state.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { StateService } from 'src/app/services/state/state.service';
 export class AddStateComponent implements OnInit {
 
   country : any=[];
-  constructor(private service : StateService, private countryService : CountryService,private router:Router) { }
+  constructor(private service : StateService,private toast:NotificationService, private countryService : CountryService,private router:Router) { }
 
   ngOnInit(): void {
     this.countryService.getAllCountry().subscribe((response)=>{
@@ -20,11 +21,14 @@ export class AddStateComponent implements OnInit {
   }
   addState(state:any) {
     this.service.createState(state).subscribe((response)=>{
-      window.alert(response.message);
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+   }
+  else{
+     this.toast.showFailure(response.message);
+   }
       this.gotoList();
-    },
-    error => window.alert(error.error)
-    );
+    });
   }
   gotoList() {
     this.router.navigate(['/viewState']);

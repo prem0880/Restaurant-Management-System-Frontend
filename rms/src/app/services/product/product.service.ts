@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../category/category.service';
 import { Meal } from '../meal/meal.service';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,28 +13,32 @@ export class ProductService {
 
   constructor(private http : HttpClient) { }
 
-  createProduct(product:Product): Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, product);
+  createProduct(product:Product): Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, product);
   }
 
-  getAllProduct() : Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
+  getAllProduct() : Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getProductById(id:number): Observable<HttpResponse>{
-    return this.http.get(`${this.baseUrl}/get/${id}`);
+  getProductById(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  getProductByTypeAndCategory(id:number,type:string): Observable<HttpResponse>{
+  getProductByMeal(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/meal/${id}`);
+  }
+
+  getProductByTypeAndCategory(id:number,type:string): Observable<HttpResponseStatus>{
     return this.http.get(`${this.baseUrl}/category/${id}/type/${type}`);
   }
 
-  deleteProduct(id:number): Observable<HttpResponse>{
-    return this.http.delete(`${this.baseUrl}/delete/${id}`);
+  deleteProduct(id:number): Observable<HttpResponseStatus>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  updateProduct(id:number,product:Product): Observable<HttpResponse>{
-    return this.http.put(`${this.baseUrl}/update/${id}`, product);
+  updateProduct(id:number,product:Product): Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, product);
   }
 
 }

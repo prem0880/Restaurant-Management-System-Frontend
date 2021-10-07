@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +12,27 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
-  createCountry(country : Country):Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, country);
+  createCountry(country : Country):Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, country);
   }
-  getAllCountry() : Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
+  getAllCountry() : Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
-  deleteCountry(id:number):Observable<HttpResponse>{
-    return this.http.delete(`${this.baseUrl}/delete/${id}`);
-  }
-
-  updateCountry(id:number,country:Country):Observable<HttpResponse>{
-    return this.http.put(`${this.baseUrl}/update/${id}`, country);
+  deleteCountry(id:number):Observable<HttpResponseStatus>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  getCountryById(id:number):Observable<HttpResponse>{
-    return this.http.get(`${this.baseUrl}/get/${id}`);
+  updateCountry(id:number,country:Country):Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, country);
+  }
+
+  getCountryById(id:number):Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 }
 export class Country{
-  id:any;
-  name:any;
+  id?:number;
+  name?:string;
   createdOn?:string;
   updatedOn?:string;
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -12,25 +12,29 @@ export class MealService {
 
   constructor(private http: HttpClient) { }
 
-  createMeal(meal: Meal): Observable<HttpResponse> {
-    return this.http.post(`${this.baseUrl}/add`, meal);
+  createMeal(meal: Meal): Observable<HttpResponseStatus> {
+    return this.http.post(`${this.baseUrl}`, meal);
   }
 
 
-  getAllMeal(): Observable<HttpResponse> {
-    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
+  getAllMeal(): Observable<HttpResponseStatus> {
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getMealById(id:number): Observable<HttpResponse>{
-    return this.http.get(`${this.baseUrl}/get/${id}`);
+  getMealById(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  deleteMeal(id: number): Observable<HttpResponse> {
-    return this.http.delete(`${this.baseUrl}/delete/${id}`);
+  getMealByName(meal:string): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/name/${meal}`);
   }
 
-  updateMeal(id: number, meal: Meal): Observable<HttpResponse> {
-    return this.http.put(`${this.baseUrl}/update/${id}`, meal);
+  deleteMeal(id: number): Observable<HttpResponseStatus> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  updateMeal(id: number, meal: Meal): Observable<HttpResponseStatus> {
+    return this.http.put(`${this.baseUrl}/${id}`, meal);
   }
 }
 export class Meal {

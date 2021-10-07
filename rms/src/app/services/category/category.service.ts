@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +12,24 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  createCategory(category : Category):Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, category);
+  createCategory(category : Category):Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, category);
   }
 
-  getAllCategory() : Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
+  getAllCategory() : Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getCategoryById(id:number): Observable<HttpResponse>{
-    return this.http.get(`${this.baseUrl}/get/${id}`);
+  getCategoryById(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  deleteCategory(id:number): Observable<HttpResponse>{
-    return this.http.delete(`${this.baseUrl}/delete/${id}`);
+  deleteCategory(id:number): Observable<HttpResponseStatus>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  updateCategory(id:number,category:Category): Observable<any>{
-    return this.http.put(`${this.baseUrl}/update/${id}`, category);
+  updateCategory(id:number,category:Category): Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, category);
   }
 
 

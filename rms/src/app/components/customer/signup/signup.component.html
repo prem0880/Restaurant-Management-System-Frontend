@@ -3,17 +3,29 @@
         <h3 style="margin-left: 130px;">Sign Up</h3>
         <div class="form-group col-md-6">
             <label for="productname">Username</label>
-            <input type="text" class="form-control" name="name"  ngModel required>
+            <input type="text" class="form-control" name="name" #name="ngModel" ngModel required>
+            <div *ngIf='name.errors && name.touched' class="alert alert-danger">
+
+              <div  [hidden]='!name.errors.required'> Provide Name</div>
+          </div>
           </div>
           <br>
         <div class="form-group col-md-6">
             <label for="producturl">Phone Number</label>
-            <input type="number" class="form-control" name="phoneNumber"  ngModel required>
+            <input type="number" class="form-control" name="phoneNumber" #phoneNumber="ngModel" ngModel required>
+            <div *ngIf='phoneNumber.errors && phoneNumber.touched' class="alert alert-danger">
+
+              <div  [hidden]='!phoneNumber.errors.required'> Provide Phone Number</div>
           </div>
+        </div>
           <br>
           <div class="form-group col-md-6">
             <label for="productbrand">Email Address</label>
-            <input type="email" class="form-control" name="email"  ngModel required>
+            <input type="email" class="form-control" name="email" #email="ngModel" ngModel required>
+            <div *ngIf='email.errors && email.touched' class="alert alert-danger">
+
+              <div  [hidden]='!email.errors.required'> Provide Email Address</div>
+          </div>
           </div>
           <br>
       <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Proceed for Address</button>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddAddressComponent } from './components/address/add-address/add-address.component';
-import { ManageAddressComponent } from './components/address/manage-address/manage-address.component';
 import { UpdateAddressComponent } from './components/address/update-address/update-address.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AddCategoryComponent } from './components/category/add-category/add-category.component';
@@ -10,8 +9,6 @@ import { UpdateCategoryComponent } from './components/category/update-category/u
 import { AddCountryComponent } from './components/country/add-country/add-country.component';
 import { ManageCountryComponent } from './components/country/manage-country/manage-country.component';
 import { UpdateCountryComponent } from './components/country/update-country/update-country.component';
-import { ManageCustomerComponent } from './components/customer/manage-customer/manage-customer.component';
-import { UpdateCustomerComponent } from './components/customer/update-customer/update-customer.component';
 import { LoginComponent } from './components/login/login.component';
 import { AddMealComponent } from './components/meal/add-meal/add-meal.component';
 import { ManageMealComponent } from './components/meal/manage-meal/manage-meal.component';
@@ -30,6 +27,7 @@ import { ViewOrdersComponent } from './components/customer/order/view-orders/vie
 import { ViewProductComponent } from './components/product/view-product/view-product.component';
 import { ViewCustomerComponent } from './components/customer/view-customer/view-customer.component';
 import { ViewProfileComponent } from './components/customer/view-profile/view-profile.component';
+import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
 
 const routes: Routes = [
  {path:"admin",component:AdminComponent},
@@ -48,20 +46,18 @@ const routes: Routes = [
  {path:"updateCountry/:id",component:UpdateCountryComponent},
  {path:"addState",component:AddStateComponent},
  {path:"viewState",component:ViewStateComponent},
- {path:"manageCustomer",component:ManageCustomerComponent},
- {path:"updateCustomer/:id",component:UpdateCustomerComponent},
  {path:"viewCustomer",component:ViewCustomerComponent},
  {path:"viewProfile",component:ViewProfileComponent},
  {path:"addAddress/:id",component:AddAddressComponent},
- {path:"manageAddress",component:ManageAddressComponent},
- {path:"updateAddress/:id",component:UpdateAddressComponent},
+ {path:"updateAddress",component:UpdateAddressComponent},
  {path:"signUp",component:SignupComponent},
  {path:"login",component:LoginComponent},
  {path:"dashboard",component:DashboardComponent},
  {path:"addOrder/:id",component:AddOrderComponent},
  {path:"processOrder",component:ProcessOrderComponent},
  {path:"viewOrders",component:ViewOrderComponent},
- {path:"viewAllOrder",component:ViewOrdersComponent}
+ {path:"viewAllOrder",component:ViewOrdersComponent},
+ {path:"manageOrder",component:ManageOrderComponent}
 
 ];
 

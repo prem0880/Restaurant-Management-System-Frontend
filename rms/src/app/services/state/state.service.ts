@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +12,18 @@ export class StateService {
 
   constructor(private http : HttpClient) { }
 
-  createState(state : State):Observable<HttpResponse> {
+  createState(state : State):Observable<HttpResponseStatus> {
     const stateObj = {
       name : state.name,
       country:{
         id:state.country
       }
     }
-    return this.http.post(`${this.baseUrl}/add`,stateObj );
+    return this.http.post(`${this.baseUrl}`,stateObj );
   }
   
-  getStatesByCountry(id:number):Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/get/${id}`);
+  getStatesByCountry(id:number):Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/${id}`);
   }
 }
 export class State {

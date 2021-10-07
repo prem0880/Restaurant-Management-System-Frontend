@@ -5,18 +5,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" (click)="addorderbutton()" >Order</a>
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Orders</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" (click)="addorderbutton()">Order Food</a>
+            <a class="dropdown-item" routerLink="/viewOrders">Order History</a>
+          </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/viewProduct">View Menu</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/viewOrders">Order History</a>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/viewProfile">View Your Profile</a>
-    </li> -->
+        <li ngbDropdown class="nav-item dropdown" >
+          <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Profile</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" routerLink="/viewProfile">View Your Profile</a>
+            <a class="dropdown-item" routerLink="/updateAddress">Update Address Details</a>        
+          </div>
+        </li>
       </ul>
     </div>
     <div>

@@ -1,5 +1,6 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
+@import '~ngx-toastr/toastr';
 body {
     padding-top: 80px;
 }

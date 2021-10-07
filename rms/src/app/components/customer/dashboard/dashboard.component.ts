@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address, AddressService } from 'src/app/services/address/address.service';
-import { Customer } from 'src/app/services/customer/customer.service';
+import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
 import { Order, OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -11,22 +11,35 @@ import { Order, OrderService } from 'src/app/services/order/order.service';
 })
 export class DashboardComponent implements OnInit {
 
-  customerId:any;
+  customerMail:any;
   addressId: any;
   order!: Order;
- 
-  constructor(private router:Router,private addressService:AddressService,private orderService:OrderService) { }
+  customerId!:number;
+
+  constructor(private router:Router,private customerService:CustomerService,private addressService:AddressService,private orderService:OrderService) { }
 
   ngOnInit(): void {
-    this.customerId=localStorage.getItem("id");
-    localStorage.setItem("loginTime",JSON.stringify(new Date()));
-    console.log(localStorage.getItem("loginTime"));
+    this.customerMail=localStorage.getItem("email");
+    this.customerService.getCustomerByMail(this.customerMail as any as string).subscribe((response)=>{
+      console.log(response.data)
+      if(response.statusCode==200){
+      this.customerId=response.data;
+      this.setId(response.data)
+      console.log(this.customerId)
+      }
+    });
     console.log(this.customerId);
   }
   logout() {
     sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['login']);
+  }
+
+  setId(response:any){
+      this.customerId=response;
+      localStorage.setItem("id",this.customerId as any as string)
+      console.log(this.customerId)
   }
 
   addorderbutton() {
@@ -45,4 +58,5 @@ export class DashboardComponent implements OnInit {
     })
     })
 }
+
 }

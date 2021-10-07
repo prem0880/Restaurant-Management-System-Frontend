@@ -12,13 +12,13 @@
                 <th>Total Price</th>
                 <th>Mode Of Payment</th>
                 <th>Date</th>
-                <th>Status</th>
-                <th>Created On</th>
-                <th>Updated On</th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let vieworder of viewOrder">
+        <tbody *ngFor="let vieworder of viewOrder">
+            
+            <tr *ngIf="vieworder.status=='SUCCESS'">
+               
                 <td>{{vieworder.id}}</td>
                 <td>{{vieworder.customer.name}}</td>
                 <td>{{vieworder.address.city}}</td>
@@ -28,10 +28,11 @@
                 <td>{{vieworder.totalPrice}}</td>
                 <td>{{vieworder.modeOfPayment}}</td>
                 <td>{{vieworder.date | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td>{{vieworder.status}}</td>
-                <td>{{vieworder.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td>{{vieworder.updatedOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-              </tr>
+                <td>
+                      <button id="{{vieworder.id}}" type="button" class="btn btn-primary" (click)="approve(vieworder)">Approve</button>
+                      <button id="{{vieworder.id}}" type="button" class="btn btn-danger" style="margin-left:10px;" (click)="deny(vieworder)">Deny</button>
+                  </td>
+                </tr>
         </tbody>
       </table>
       

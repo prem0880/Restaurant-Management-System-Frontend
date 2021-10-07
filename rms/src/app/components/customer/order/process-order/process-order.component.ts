@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Address, AddressService } from 'src/app/services/address/address.service';
 import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Order, OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ProcessOrderComponent implements OnInit {
   public customerId:Number|any
   public address:Address|any
   public customer:Customer|any
-  constructor(private orderService:OrderService,private router:Router,private addressService:AddressService,private customerService:CustomerService) { }
+  constructor(private orderService:OrderService,private toast:NotificationService,private router:Router,private addressService:AddressService,private customerService:CustomerService) { }
   ProcessOrderForm=new FormGroup({
     modeOfPayment:new FormControl('',Validators.required),
   })
@@ -57,8 +58,13 @@ export class ProcessOrderComponent implements OnInit {
     };
     this.orderService.updateOrder(this.orderDetail.id,this.orderDetails).subscribe(response=>{
       console.log(response.message)
-      window.alert(response.message)
-      window.alert("Your Transaction has been successful! You will be redirected to home page")
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
+      this.toast.showInfo("Your Transaction has been successful! You will be redirected to home page")
       this.router.navigate(['dashboard']);
     })
   }

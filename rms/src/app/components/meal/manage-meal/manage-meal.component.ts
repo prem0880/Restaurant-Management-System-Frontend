@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MealService } from 'src/app/services/meal/meal.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-manage-meal',
@@ -11,7 +12,7 @@ export class ManageMealComponent implements OnInit {
 
   viewMeal?:any=[];
 
-  constructor(private router:Router,private mealService:MealService) { }
+  constructor(private router:Router,private toast:NotificationService,private mealService:MealService) { }
 
   ngOnInit():any {
     this.reloadData(); 
@@ -26,10 +27,15 @@ export class ManageMealComponent implements OnInit {
 
   deleteMeal(id:number) {
     this.mealService.deleteMeal(id).subscribe(response => {
-          window.alert(response.message);
-          this.reloadData();
-        },
-        error =>  window.alert(error.error));
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+   }
+  else{
+     this.toast.showFailure(response.message);
+   }
+
+         this.reloadData();
+        });
   }
 
   updateMeal(id:number) {

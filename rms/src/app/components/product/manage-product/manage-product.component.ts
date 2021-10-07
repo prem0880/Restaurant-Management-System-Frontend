@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class ManageProductComponent implements OnInit {
 
   viewProduct?:any=[];
 
-  constructor(private router:Router,private productService:ProductService) { }
+  constructor(private router:Router,private toast:NotificationService,private productService:ProductService) { }
 
    ngOnInit(): any {
     this.reloadData(); 
@@ -26,9 +27,14 @@ export class ManageProductComponent implements OnInit {
 
   deleteProduct(id:number) {
     this.productService.deleteProduct(id).subscribe(response => {
-          window.alert(response.message);
-  },
-  error=>window.alert(error.error));
+      if(response.statusCode==200){
+        this.toast.showWarn(response.message);
+   }
+  else{
+     this.toast.showFailure(response.message);
+   }
+
+    });
   }
 
   updateProduct(id:number) {

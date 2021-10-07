@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Address } from '../address/address.service';
 import { Customer } from '../customer/customer.service';
-import { OrderItem } from '../order-item/order-item';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -15,42 +14,38 @@ export class OrderService {
 
   constructor(private http:HttpClient) { }
 
-  addOrder(order:Order) :Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, order);
+  addOrder(order:Order) :Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, order);
   }
 
-  getOrderId(customerId:number):Observable<HttpResponse>
+  getOrderId(customerId:number):Observable<HttpResponseStatus>
   {
-    return this.http.get(`${this.baseUrl}/orderId/${customerId}`)
+    return this.http.get(`${this.baseUrl}/order/${customerId}`)
   }
 
-  getOrderByCustomerId(customerId:number):Observable<HttpResponse>
+  getOrderByCustomerId(customerId:number):Observable<HttpResponseStatus>
   {
     return this.http.get(`${this.baseUrl}/customer/${customerId}`)
   }
 
-  getAllOrder():Observable<HttpResponse>
+  getAllOrder():Observable<HttpResponseStatus>
   {
-    return this.http.get(`${this.baseUrl}/getAll`)
+    return this.http.get(`${this.baseUrl}`)
+  }
+  
+  getOrderById(orderId:number):Observable<HttpResponseStatus> 
+  {
+    return this.http.get(`${this.baseUrl}/${orderId}`)
   }
 
-  addOrderItem(orderItem:OrderItem):Observable<HttpResponse>
+  updateOrder(orderId:number,order:object):Observable<HttpResponseStatus>
   {
-    return this.http.post(`http://localhost:8083/order-item/add`,orderItem)
+    return this.http.put(`${this.baseUrl}/${orderId}`,order)
   }
 
-  getOrderedItems(orderId:number):Observable<HttpResponse>
+  updateOrderStatus(orderId:number,status:string):Observable<HttpResponseStatus>
   {
-    return this.http.get(`http://localhost:8083/order-item/get-items/${orderId}`)
-  }
-  getOrderById(orderId:number):Observable<HttpResponse> 
-  {
-    return this.http.get(`${this.baseUrl}/id/${orderId}`)
-  }
-
-  updateOrder(orderId:number,order:object):Observable<HttpResponse>
-  {
-    return this.http.put(`${this.baseUrl}`+'/update-order/'+`${orderId}`,order)
+    return this.http.put(`${this.baseUrl}/${orderId}/${status}`,"")
   }
 
 }

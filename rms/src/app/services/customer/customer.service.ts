@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
@@ -11,38 +11,38 @@ export class CustomerService {
 
   constructor(private http:HttpClient) { }
 
-  createCustomer(customer:Customer):Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, customer);
+  createCustomer(customer:Customer):Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, customer);
   }
 
-  getAllCustomer():Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/getAll`);
+  getAllCustomer():Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getCustomerById(id:number):Observable<HttpResponse>{
-    return this.http.get(`${this.baseUrl}/get/${id}`);
+  getCustomerById(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  updateCustomer(id:number,customer:Customer):Observable<HttpResponse>{
-    return this.http.put(`${this.baseUrl}/update/${id}`, customer);
+  getCustomerByMail(email:any):Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/mail/${email}`);
   }
 
-  loginValidation(credential:Customer):Observable<HttpResponse>{
-    const customer={
-      "email": credential.email,
-      "password":credential.password
-    }
-    return this.http.post(`${this.baseUrl}/login`, customer);
+
+  updateCustomer(id:number,customer:Customer):Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, customer);
   }
   
 }
 
 export class Customer{
-  id?:number;
+  id?: number;
   phoneNumber?:number;
   name?:string;
   email?:string;
   password?:string;
   createdOn?:string;
   updatedOn?:string;
+  // constructor(id:number){
+  //   this.id=id
+  // }
 }

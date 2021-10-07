@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meal, MealService } from 'src/app/services/meal/meal.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-add-meal',
@@ -10,16 +11,25 @@ export class AddMealComponent implements OnInit {
 
   submitted:boolean=false;
 
-  constructor(private mealService:MealService) { }
+  constructor(private mealService:MealService,private toast:NotificationService) { }
 
   ngOnInit(): void {
   }
 
   addMeal(meal:Meal) {
     this.mealService.createMeal(meal).subscribe((response) => {
-      window.alert(response.message);
-    },
-    error => window.alert(error.error)
-    );
+
+
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
+
+
+
+    });
+    
   }
 }

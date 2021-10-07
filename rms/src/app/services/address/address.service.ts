@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../customer/customer.service';
-import { HttpResponse } from '../response/HttpResponse';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
+import { State } from '../state/state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,26 @@ export class AddressService {
 
   constructor(private http:HttpClient) { }
 
-  addAddress(address:Address) :Observable<HttpResponse>{
-    return this.http.post(`${this.baseUrl}/add`, address);
+  addAddress(address:Address) :Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, address);
   }
 
-  getAddressByPhone(id:any) :Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/get/phoneNumber/${id}`);
+  getAddressByPhone(id:any) :Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/phoneNumber/${id}`);
   }
 
-  getAddressByCustomerId(id:any) :Observable<HttpResponse>{
-    return this.http.get<HttpResponse>(`${this.baseUrl}/get/customer/${id}`);
+  getAddressByCustomerId(id:any) :Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/customer/${id}`);
   }
+
+  updateAddress(id:any,address:Address):Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`,address);
+  }
+
+  getAddressById(id:any) :Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/${id}`);
+  }
+
 
   
 }
@@ -33,6 +43,8 @@ export class Address{
   addressLine?:string;
   city?:string;
   pincode?:number;
-  state?:any;
-  customer?:any;
+  state?:State;
+  customer?:Customer;
+  createdOn?:string;
+  updatedOn?:string;
 }

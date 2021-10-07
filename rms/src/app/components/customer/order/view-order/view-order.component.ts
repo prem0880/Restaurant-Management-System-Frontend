@@ -18,6 +18,7 @@ export class ViewOrderComponent implements OnInit {
   ngOnInit(): void {
     this.customerId=localStorage.getItem("id");
     this.orderService.getOrderByCustomerId(this.customerId).subscribe((response)=>{
+      console.log(response.data)
       this.viewOrder=response.data
     },error=>console.log(error.error));
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
+import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -9,7 +8,7 @@ import { Customer, CustomerService } from 'src/app/services/customer/customer.se
 })
 export class ViewProfileComponent implements OnInit {
 
-  viewCustomer:Customer|any;
+  viewCustomer:any=[];
   customerId:any
 
   constructor(private customerService:CustomerService) { }
@@ -17,10 +16,13 @@ export class ViewProfileComponent implements OnInit {
   ngOnInit(): void {
     this.customerId=localStorage.getItem('id')
     console.log(this.customerId)
-    this.customerService.getCustomerById(this.customerId as any as number).subscribe((response)=>{
+    this.goToList();
+  }
+  goToList(){
+    this.customerService.getCustomerById(this.customerId).subscribe((response)=>{
       console.log(response.data)
       this.viewCustomer=response.data;
-      console.log(this.viewCustomer)
+      console.log(this.viewCustomer.name)
     },error=>console.log(error.error));
   }
 

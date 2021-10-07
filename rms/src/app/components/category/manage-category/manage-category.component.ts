@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-manage-category',
@@ -11,7 +12,7 @@ export class ManageCategoryComponent implements OnInit {
 
   viewCategory?:any=[];
 
-  constructor(private router:Router,private categoryService:CategoryService) { }
+  constructor(private router:Router,private categoryService:CategoryService,private toast:NotificationService) { }
 
   ngOnInit():any {
     this.reloadData();  
@@ -27,10 +28,14 @@ export class ManageCategoryComponent implements OnInit {
 
   deleteCategory(id:number) {
     this.categoryService.deleteCategory(id).subscribe(response => {
-        window.alert(response.message);
+      if(response.statusCode==200){
+        this.toast.showWarn(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
         this.reloadData();
-      },
-      error =>  window.alert(error.error));
+      });
   }
 
   updateCategory(id:number) {

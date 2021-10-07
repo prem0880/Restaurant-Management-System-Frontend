@@ -22,7 +22,7 @@ export class ViewStateComponent implements OnInit {
 
   getState(country:Country) {
     console.log(country.id);
-    this.stateService.getStatesByCountry(country.id).subscribe((response)=>{
+    this.stateService.getStatesByCountry(country.id as any as number).subscribe((response)=>{
       this.viewState = response.data;
       this.display=true;
     })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address, AddressService } from 'src/app/services/address/address.service';
 import { CountryService } from 'src/app/services/country/country.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { StateService } from 'src/app/services/state/state.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AddAddressComponent implements OnInit {
   id : any;
   state  :any=[];
   country : any=[];
-  constructor(private router : Router, private route: ActivatedRoute, private stateService : StateService, private countryService  :CountryService, private addressService : AddressService) { 
+  constructor(private router : Router, private route: ActivatedRoute, private stateService : StateService, private countryService  :CountryService, private addressService : AddressService,private toast:NotificationService) { 
     
   }
 
@@ -43,15 +44,18 @@ export class AddAddressComponent implements OnInit {
     console.log(address.state);
     this.addressService.addAddress(address).subscribe((response)=>{
       console.log(address);
-      window.alert(response.message);
+      if(response.statusCode==200){
+        this.toast.showSuccess(response.message);
+       }
+     else{
+     this.toast.showFailure(response.message);
+     }
       this.gotoList();
-    },
-    error => window.alert(error.error)
-    );
+  });
 
   }
   gotoList() {
-    window.alert("Sign IN Now");
+    this.toast.showInfo("Sign In Now");
     this.router.navigate(['/login']);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { MealService } from 'src/app/services/meal/meal.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class UpdateProductComponent implements OnInit {
 
   id?:any;
 
-  constructor(private router:Router,private route:ActivatedRoute,private categoryService:CategoryService,private mealService:MealService,private productService:ProductService) {}
+  constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private categoryService:CategoryService,private mealService:MealService,private productService:ProductService) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -61,9 +62,15 @@ export class UpdateProductComponent implements OnInit {
       product.category=this.categoryObj;
       product.meal=this.mealObj;
       this.productService.updateProduct(this.id,product).subscribe((response) => {
-        window.alert(response.message);
+        if(response.statusCode==200){
+          this.toast.showSuccess(response.message);
+     }
+    else{
+       this.toast.showFailure(response.message);
+     }
+  
         this.goToList();
-      },error=>window.alert(error.error));
+      });
   }
 
   goToList(){

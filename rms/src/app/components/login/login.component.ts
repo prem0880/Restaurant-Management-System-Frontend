@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/services/customer/customer.service';
+import { LoginService } from 'src/app/services/login/login.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -9,32 +11,35 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router:Router,private customerService:CustomerService) { }
+  constructor(private router:Router,private customerService:CustomerService,private toast:NotificationService,private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
 
   onLogin(credential:any){
-    if(credential.email=='admin@gmail.com' && credential.password=='admin'){
-      window.alert("Welcome admin!");
-      this.router.navigate(['admin']);
-    } else if(credential.email=='admin@gmail.com' && credential.password!='admin'){
-      window.alert("admin login failed");
-    }
-    else{
-      this.customerService.loginValidation(credential).subscribe(response=>{
-        console.log(response);
-        if(response.data!=null){
-          console.log(response.data);
-          window.alert("Welcome customer!");
-          localStorage.setItem("id",response.data);
-          this.router.navigate(['dashboard']);
-        }else{
-          window.alert("Login attempt failed!");
-        }
+    this.loginService.loginValidation(credential).subscribe((response)=>{
+            console.log(response.data);
+            if(response.statusCode==200){
+            if(response.data=="Admin"){
+                 this.toast.showSuccess("Welcome admin!");
+                 this.router.navigate(['admin']);
+            }else if(response.data=="Customer"){
+                  console.log(response.data);
+                  this.toast.showSuccess("Welcome customer!");
+                  localStorage.setItem("email",credential.email);
+                  this.router.navigate(['dashboard']);
+            }else{
+              this.toast.showFailure("Incorrect Credentials");
+            }
+          }else{
+            this.toast.showFailure("Login attempt failed!");
+          }
+
     });
+
+  
     }
         
-  }
+  
 
 }
