@@ -6,7 +6,8 @@ import { MealService } from 'src/app/services/meal/meal.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { OrderItem, OrderItemService } from 'src/app/services/order-item/order-item.service';
 import { Order, OrderService } from 'src/app/services/order/order.service';
-import { ProductService } from 'src/app/services/product/product.service';
+import { Product, ProductService } from 'src/app/services/product/product.service';
+import { TimeConverterService } from 'src/app/services/time/time-converter.service';
 
 @Component({
   selector: 'app-add-order',
@@ -19,7 +20,7 @@ export class AddOrderComponent implements OnInit {
   id:any;
   quantity:any;
   productId:any;
-  productList:any;
+  productList!:Product |any;
   categoryList: any;
   mealId:any;
   product:any;
@@ -31,9 +32,11 @@ export class AddOrderComponent implements OnInit {
   orderId:Number|any
   orderedItems:Observable<OrderItem[]>|any
   length:number|any
-  meal?:string;
+  meal!:string;
+  submitted:boolean=false;
 
-  constructor(private productService:ProductService,private toast:NotificationService,private orderService:OrderService,private orderItemService:OrderItemService,private router:Router, private route : ActivatedRoute,private categoryService:CategoryService,private mealService:MealService) {
+
+  constructor(private productService:ProductService,private time:TimeConverterService,private toast:NotificationService,private orderService:OrderService,private orderItemService:OrderItemService,private router:Router, private route : ActivatedRoute,private categoryService:CategoryService,private mealService:MealService) {
     this.id = this.route.snapshot.params['id'];
    }
 
@@ -43,25 +46,7 @@ export class AddOrderComponent implements OnInit {
       this.categoryList = response.data;
       console.log(this.categoryList)
   });
-
-
-   var today = new Date()
-   var curHr = today.getHours()
-   if (curHr < 12) {
- console.log('Breakfast')
-    this.meal="Breakfast"
-} else if (curHr < 18) {
- console.log('Lunch')
- this.meal="Lunch"
- } else {
- console.log('Dinner')
- this.meal="Dinner"
- }
- console.log(this.meal)
- this.mealService.getMealByName(this.meal).subscribe( response => {
-  this.mealId = response.data;
-  console.log(this.mealId)
-});
+  this.meal=this.time.getTime();
   }
 
   getType(type:any){
@@ -70,18 +55,31 @@ export class AddOrderComponent implements OnInit {
 
   getMeal(meal:any){
     console.log(meal);
+    this.mealService.getMealByName(meal).subscribe( response => {
+     this.mealId = response.data;
+     console.log(this.mealId)
+     this.productService.getProductByMeal(this.mealId).subscribe((response)=>{
+        this.productList=response.data;
+        console.log(this.productList);
+      },error=>console.log(error.error));
+     console.log(this.mealId)
+   });
+
   }
+
 
   getCategory(category:any){
     this.productCategory=category;
     console.log(this.productType+" "+this.productCategory);
     this.productService.getProductByTypeAndCategory(this.productCategory as any as number,this.productType).subscribe((response)=>{
      this.productList=response.data;
+     for(let x=0;x<this.productList.length;x++){
+       if(this.productList[x].meal==this.meal){
+          this.product=this.productList[x];
+       }
+     }
+     console.log(this.productList[0].meal);
       console.log(response.data);
-      // this.productService.getProductByMeal(this.mealId).subscribe((response)=>{
-      //   this.productList=response.data;
-      //   console.log(this.productList);
-      // },error=>console.log(error.error));
     },error=>console.log(error.error));
   }
 

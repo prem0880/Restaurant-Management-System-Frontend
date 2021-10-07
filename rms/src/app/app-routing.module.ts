@@ -30,6 +30,7 @@ import { ViewProfileComponent } from './components/customer/view-profile/view-pr
 import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
 
 const routes: Routes = [
+{path : '', redirectTo : 'login', pathMatch : 'full'},
  {path:"admin",component:AdminComponent},
  {path:"addCategory",component:AddCategoryComponent},
  {path:"manageCategory",component:ManageCategoryComponent},
