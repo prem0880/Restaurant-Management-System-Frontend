@@ -11,8 +11,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UpdateCategoryComponent implements OnInit {
   
   submitted:boolean=false;
-  id?:any;
-  category?:any;
+  id!:number;
+  category!:Category;
 
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private categoryService:CategoryService) { 
   }

@@ -4,9 +4,13 @@
         <h3 style="margin-left: 130px;">Add Category</h3>
         <br>    
           <div class="form-group col-md-6">
-            <label for="categoryname">Enter Category Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Category name"  ngModel required>
+            <b><label for="categoryname">Enter Category Name</label></b>
+            <input type="text" class="form-control" name="name" placeholder="Enter Category name" pattern="[A-Za]{0,1}[a-z]{5,}" #name="ngModel" ngModel required>
         </div>
+        <div *ngIf="name.touched" id="errorText">
+          <p *ngIf="name.errors?.required">Category Name is Required!!!</p>
+          <p *ngIf="name.errors?.pattern">Digits are not allowed!!!</p> 
+      </div>
           <br>
      <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Add Category</button>
       </form>

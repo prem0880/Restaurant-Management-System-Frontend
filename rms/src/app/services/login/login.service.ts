@@ -32,7 +32,7 @@ export class LoginService {
 export class Login{
   id?:number;
   email?:string;
-  password?:string|any;
+  password?:string|any;//change
   role?:string;
   createdOn?:string;
   updatedOn?:string;

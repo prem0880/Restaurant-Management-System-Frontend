@@ -26,13 +26,13 @@ export class CountryService {
     return this.http.put(`${this.baseUrl}/${id}`, country);
   }
 
-  getCountryById(id:number):Observable<HttpResponseStatus>{
+  getCountryById(id:number):Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 }
 export class Country{
-  id?:number;
-  name?:string;
+  id!:number;
+  name!:string;
   createdOn?:string;
   updatedOn?:string;
 }

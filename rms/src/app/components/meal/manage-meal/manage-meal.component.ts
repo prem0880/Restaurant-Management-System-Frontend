@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MealService } from 'src/app/services/meal/meal.service';
+import { Meal, MealService } from 'src/app/services/meal/meal.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class ManageMealComponent implements OnInit {
 
-  viewMeal?:any=[];
+  viewMeal!:Meal[];
 
   constructor(private router:Router,private toast:NotificationService,private mealService:MealService) { }
 

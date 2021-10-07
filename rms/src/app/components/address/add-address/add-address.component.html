@@ -4,29 +4,17 @@
         <br>
         <div class="form-group col-md-6">
             <label for="producturl">Address Line</label>
-            <input type="text" class="form-control" name="addressLine" #addressLine="ngModel" ngModel required>
-            <div *ngIf='addressLine.errors && addressLine.touched' class="alert alert-danger">
-
-              <div  [hidden]='!addressLine.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="text" class="form-control" name="addressLine" #addressLine="ngModel" pattern="[A-za-z0-9]" ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producturl">City Name</label>
-            <input type="text" class="form-control" name="city" #city="ngModel"  ngModel required>
-            <div *ngIf='city.errors && city.touched' class="alert alert-danger">
-
-              <div  [hidden]='!city.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="text" class="form-control" name="city" #city="ngModel" pattern="[A-za-z]" ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producturl">Pincode</label>
-            <input type="number" class="form-control" name="pincode" #pincode="ngModel"  ngModel required>
-            <div *ngIf='pincode.errors && pincode.touched' class="alert alert-danger">
-
-              <div  [hidden]='!pincode.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="number" class="form-control" name="pincode" #pincode="ngModel" pattern="[0-9]{6}" ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
@@ -43,6 +31,6 @@
           </select>
         </div>
         <br>
-      <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid"class="btn btn-primary">Sign Up</button>
+      <button type="submit" style="margin-left: 150px;"  class="btn btn-primary">Sign Up</button>
       </form>
 </div>

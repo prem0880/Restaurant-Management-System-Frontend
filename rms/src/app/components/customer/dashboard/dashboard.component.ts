@@ -11,8 +11,8 @@ import { Order, OrderService } from 'src/app/services/order/order.service';
 })
 export class DashboardComponent implements OnInit {
 
-  customerMail:any;
-  addressId: any;
+  customerMail:any;//any for local storage
+  addressId!: number;
   order!: Order;
   customerId!:number;
 

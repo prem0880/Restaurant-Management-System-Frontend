@@ -4,9 +4,13 @@
         <h3 style="margin-left: 130px;">Update Category</h3>
         <br>    
           <div class="form-group col-md-6">
-            <label for="categoryname">Enter Category Name to Update</label>
-            <input type="text" class="form-control" ngModel name="name" placeholder="Enter Category name"  [(ngModel)]="category.name" [value]="category.name" required>
+            <b><label for="categoryname">Enter Category Name to Update</label></b>
+            <input type="text" class="form-control" ngModel name="name" placeholder="Enter Category name"  #name="ngModel" [(ngModel)]="category.name" [value]="category.name" required>
         </div>
+        <div *ngIf="name.touched" id="errorText">
+          <p *ngIf="name.errors?.required">Category Name is Required!!!</p>
+          <!-- <p *ngIf="name.errors?.pattern">Digits are not allowed!!!</p>  -->
+      </div>
           <br>
         <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Update</button>
       </form>

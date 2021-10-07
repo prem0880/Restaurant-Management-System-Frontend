@@ -50,13 +50,13 @@ export class OrderService {
 
 }
 export class Order{
-  id?:number;
+  id!:number;
   date?:Date;
   totalPrice?:number;
   modeOfPayment?:string;
   status?:string;
-  customer?:Customer;
-  address?:Address;
+  customer!:Customer;
+  address!:Address;
   createdOn?:string;
   updatedOn?:string;
 }

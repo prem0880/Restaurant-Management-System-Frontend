@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address, AddressService } from 'src/app/services/address/address.service';
-import { CountryService } from 'src/app/services/country/country.service';
+import { Country, CountryService } from 'src/app/services/country/country.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { StateService } from 'src/app/services/state/state.service';
+import { State, StateService } from 'src/app/services/state/state.service';
 
 @Component({
   selector: 'app-add-address',
@@ -12,9 +12,9 @@ import { StateService } from 'src/app/services/state/state.service';
 })
 export class AddAddressComponent implements OnInit {
 
-  id : any;
-  state  :any=[];
-  country : any=[];
+  id !: number;
+  state !:State[];
+  country !: Country[];
   constructor(private router : Router, private route: ActivatedRoute, private stateService : StateService, private countryService  :CountryService, private addressService : AddressService,private toast:NotificationService) { 
     
   }

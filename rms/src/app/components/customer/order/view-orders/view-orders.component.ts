@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/services/order/order.service';
+import { Order, OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-view-orders',
@@ -9,7 +9,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class ViewOrdersComponent implements OnInit {
 
-  viewOrder?:any=[];
+  viewOrder!:Order[];
   constructor(private router:Router,private orderService:OrderService) { }
 
   ngOnInit(): void {

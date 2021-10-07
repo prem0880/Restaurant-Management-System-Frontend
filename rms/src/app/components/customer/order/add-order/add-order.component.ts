@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { Category, CategoryService } from 'src/app/services/category/category.service';
 import { MealService } from 'src/app/services/meal/meal.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { OrderItem, OrderItemService } from 'src/app/services/order-item/order-item.service';
@@ -16,22 +16,21 @@ import { TimeConverterService } from 'src/app/services/time/time-converter.servi
 })
 export class AddOrderComponent implements OnInit {
  
-
-  id:any;
-  quantity:any;
-  productId:any;
-  productList!:Product |any;
-  categoryList: any;
-  mealId:any;
-  product:any;
-  productType:any;
-  productCategory:any;
-  productQuantity:any;
-  order:Order|any
-  orderItem:OrderItem|any
-  orderId:Number|any
-  orderedItems:Observable<OrderItem[]>|any
-  length:number|any
+  id!:number;
+  quantity!:number;
+  productId!:number;
+  productList!:Product |any;//change need:explore
+  categoryList!: Category[];
+  mealId!:number;
+  product!:Product;
+  productType!:string;
+  productCategory!:number;
+  productQuantity!:number;
+  order!:Order
+  orderItem!:OrderItem|any;//error because of relationship so, any used 
+  orderId!:number
+  orderedItems!:OrderItem[]
+  length!:number
   meal!:string;
   submitted:boolean=false;
 

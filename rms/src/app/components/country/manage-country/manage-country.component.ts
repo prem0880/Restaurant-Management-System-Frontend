@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CountryService } from 'src/app/services/country/country.service';
+import { Country, CountryService } from 'src/app/services/country/country.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class ManageCountryComponent implements OnInit {
 
-  viewCountry?:any=[];
+  viewCountry!:Country[];
 
   constructor(private router:Router,private toast:NotificationService,private countryService:CountryService) { }
 

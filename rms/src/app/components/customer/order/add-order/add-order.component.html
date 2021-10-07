@@ -48,7 +48,7 @@
         <button class="btn btn-success" [disabled]="userForm.invalid" style="margin-left: 15cm;"  type="submit">Add Item</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn2" class="btn btn-warning" type="reset">Cancel</button>
         <br>
         <br>
-        <table *ngIf='length>0' class="table table-bordered">
+        <table *ngIf='length>0' class="table table-bordered"> 
             <caption style="text-align: center;"><b><i>Order Item Details</i></b></caption>
                 <tr>
                     <th>Product Name</th>
@@ -57,8 +57,8 @@
                     <th>Price</th>
                 </tr>
                 <tr *ngFor="let orderedItem of orderedItems">
-                    <td>{{orderedItem.product.name}}</td>
-                    <td>{{orderedItem.product.price}}</td>
+                    <td>{{orderedItem.product?.name}}</td>
+                    <td>{{orderedItem.product?.price}}</td> 
                     <td>{{orderedItem.quantity}}</td>
                     <td>{{orderedItem.price}}</td>
                 </tr>

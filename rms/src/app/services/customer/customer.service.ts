@@ -42,7 +42,4 @@ export class Customer{
   password?:string;
   createdOn?:string;
   updatedOn?:string;
-  // constructor(id:number){
-  //   this.id=id
-  // }
 }

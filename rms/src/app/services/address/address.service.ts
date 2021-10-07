@@ -39,8 +39,8 @@ export class AddressService {
   
 }
 export class Address{
-  id?:number;
-  addressLine?:string;
+  id!:number;
+  addressLine?:string;//rise error in orderDetails.address
   city?:string;
   pincode?:number;
   state?:State;

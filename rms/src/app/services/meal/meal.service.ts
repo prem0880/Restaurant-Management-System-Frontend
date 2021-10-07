@@ -38,7 +38,7 @@ export class MealService {
   }
 }
 export class Meal {
-  id?: number;
+  id!: number;
   name?: string;
   createdOn?:string;
   updatedOn?:string;

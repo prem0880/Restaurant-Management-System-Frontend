@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class AddCountryComponent implements OnInit {
 
   submitted:boolean=false;
-  country:any;
+  country!:Country;
 
   constructor(private countryService:CountryService,private toast:NotificationService) { }
 

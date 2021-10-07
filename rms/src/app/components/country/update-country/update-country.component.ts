@@ -11,8 +11,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UpdateCountryComponent implements OnInit {
 
   submitted:boolean=false;
-  id?:any;
-  country?:any;
+  id!:number;
+  country!:Country;
 
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private countryService:CountryService) { }
 

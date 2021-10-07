@@ -14,12 +14,12 @@ export class OrderItemService {
 
   constructor(private http:HttpClient) { }
 
-  addOrderItem(orderItem:OrderItem):Observable<HttpResponseStatus>
+  addOrderItem(orderItem:OrderItem):Observable<any>
   {
     return this.http.post(`${this.baseUrl}`,orderItem)
   }
 
-  getOrderedItems(orderId:number):Observable<HttpResponseStatus>
+  getOrderedItems(orderId:number):Observable<any>
   {
     return this.http.get(`${this.baseUrl}/${orderId}`)
   }

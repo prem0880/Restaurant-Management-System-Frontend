@@ -13,12 +13,13 @@ import { Order, OrderService } from 'src/app/services/order/order.service';
 })
 export class ProcessOrderComponent implements OnInit {
 
-  public order:Order|any 
-  public orderDetail:Order|any
-  public orderDetails:Order|any
-  public customerId:Number|any
-  public address:Address|any
-  public customer:Customer|any
+  order:Order|any //any used because of local storage 
+  orderDetail!:Order
+  orderDetails!:Order
+  customerId:Number|any//any used because of local storage
+  address!:Address[]
+  customer!:Customer
+  
   constructor(private orderService:OrderService,private toast:NotificationService,private router:Router,private addressService:AddressService,private customerService:CustomerService) { }
   ProcessOrderForm=new FormGroup({
     modeOfPayment:new FormControl('',Validators.required),
@@ -38,7 +39,7 @@ export class ProcessOrderComponent implements OnInit {
         console.log(this.address[0].id as any as number)
         console.log(this.address[0].addressLine)
         console.log(this.address[0].city)
-        console.log(this.address[0].state.name)
+     //   console.log(this.address[0].state.name)
         console.log(this.address[0].pincode)
       })
     })

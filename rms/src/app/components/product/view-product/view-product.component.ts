@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product/product.service';
+import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-view-product',
@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./view-product.component.css']
 })
 export class ViewProductComponent implements OnInit {
-  viewProduct?:any=[];
+  viewProduct!:Product[];
 
   constructor(private router:Router,private productService:ProductService) { }
 

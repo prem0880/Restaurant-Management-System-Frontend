@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category/category.service';
-import { MealService } from 'src/app/services/meal/meal.service';
+import { Category, CategoryService } from 'src/app/services/category/category.service';
+import { Meal, MealService } from 'src/app/services/meal/meal.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
@@ -13,18 +13,10 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class UpdateProductComponent implements OnInit {
 
   submitted:boolean=false;
-
-  product?:any;
-
-  category:any=[];
-
-  meal:any=[];
-
-  categoryObj: any=[] ;
-
-  mealObj:any=[];
-
-  id?:any;
+  product!:Product;
+  category!:Category[];
+  meal!:Meal[];
+  id!:number;
 
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private categoryService:CategoryService,private mealService:MealService,private productService:ProductService) {}
 
@@ -44,23 +36,13 @@ export class UpdateProductComponent implements OnInit {
   },error=>console.log(error));
   }
 
-  getCategory(cid:number){
-
-    this.categoryObj={"id":cid};
-    
-  }
-    
-  getMeal(mid:number){
-  
-    this.mealObj={"id":mid}
-    
-  }
-
   updateProduct(product:Product) {
-      this.getCategory(product.category as any as number);
-      this.getMeal(product.meal as any as number);
-      product.category=this.categoryObj;
-      product.meal=this.mealObj;
+    product.category={
+      "id":Number(product.category as any as number)
+    }
+    product.meal={
+      "id":Number(product.meal as any as number)
+    }
       this.productService.updateProduct(this.id,product).subscribe((response) => {
         if(response.statusCode==200){
           this.toast.showSuccess(response.message);
@@ -68,7 +50,6 @@ export class UpdateProductComponent implements OnInit {
     else{
        this.toast.showFailure(response.message);
      }
-  
         this.goToList();
       });
   }

@@ -35,8 +35,8 @@ export class CategoryService {
 
 }
 export class Category{
-  id?:number;
-  name?:string;
+  id!:number;
+  name?:string;//if made (!),do assign the value null at product.category
   createdOn?:string;
   updatedOn?:string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from 'src/app/services/customer/customer.service';
+import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -8,8 +8,8 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class ViewProfileComponent implements OnInit {
 
-  viewCustomer:any=[];
-  customerId:any
+  viewCustomer!:Customer;
+  customerId:any;//any for local storage
 
   constructor(private customerService:CustomerService) { }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from 'src/app/services/customer/customer.service';
+import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
   selector: 'app-view-customer',
@@ -9,7 +9,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class ViewCustomerComponent implements OnInit {
 
-  viewCustomer?:any[];
+  viewCustomer!:Customer[];
 
   constructor(private router:Router,private customerService:CustomerService) { }
 

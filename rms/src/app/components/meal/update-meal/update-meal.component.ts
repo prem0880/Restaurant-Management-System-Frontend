@@ -11,8 +11,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UpdateMealComponent implements OnInit {
 
   submitted:boolean=false;
-  id?:any;
-  meal?:any;
+  id!:number;
+  meal!:Meal;
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private mealService:MealService) { 
   }
 
@@ -32,8 +32,6 @@ export class UpdateMealComponent implements OnInit {
   else{
      this.toast.showFailure(response.message);
    }
-
-
       this.goToList();
     });
   }

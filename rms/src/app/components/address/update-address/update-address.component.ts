@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Address, AddressService } from 'src/app/services/address/address.service';
-import { CountryService } from 'src/app/services/country/country.service';
+import { Country, CountryService } from 'src/app/services/country/country.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { StateService } from 'src/app/services/state/state.service';
+import { State, StateService } from 'src/app/services/state/state.service';
 
 @Component({
   selector: 'app-update-address',
@@ -11,10 +11,10 @@ import { StateService } from 'src/app/services/state/state.service';
 })
 export class UpdateAddressComponent implements OnInit {
 
-  address:any;
-  customerId:any;
-  state  :any=[];
-  country : any=[];
+  address!:Address;
+  customerId:any;//any because of local storage string
+  state  !:State[];
+  country !: Country[];
 
   constructor(private addressService:AddressService,private stateService : StateService,private toast:NotificationService, private countryService  :CountryService) { }
 

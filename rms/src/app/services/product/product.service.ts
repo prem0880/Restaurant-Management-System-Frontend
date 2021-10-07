@@ -17,23 +17,23 @@ export class ProductService {
     return this.http.post(`${this.baseUrl}`, product);
   }
 
-  getAllProduct() : Observable<HttpResponseStatus>{
-    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
+  getAllProduct() : Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}`);
   }
 
-  getProductById(id:number): Observable<HttpResponseStatus>{
+  getProductById(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  getProductByMeal(id:number): Observable<HttpResponseStatus>{
+  getProductByMeal(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/meal/${id}`);
   }
 
-  getProductByTypeAndCategory(id:number,type:string): Observable<HttpResponseStatus>{
+  getProductByTypeAndCategory(id:number,type:string): Observable<any>{
     return this.http.get(`${this.baseUrl}/category/${id}/type/${type}`);
   }
 
-  deleteProduct(id:number): Observable<HttpResponseStatus>{
+  deleteProduct(id:number): Observable<any>{
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
@@ -43,15 +43,15 @@ export class ProductService {
 
 }
 export class Product{
-  id?:number;
+  id!:number;
   name?:string;
   image?:string;
   type?:string;
   price?:number;
   description?:string;
   tax?:number;
-  category?:Category;
-  meal?:Meal;
+  category!:Category;
+  meal!:Meal;
   createdOn?:string;
   updatedOn?:string;
 }

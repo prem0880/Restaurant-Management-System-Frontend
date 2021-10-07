@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryService } from 'src/app/services/category/category.service';
+import { Category, CategoryService } from 'src/app/services/category/category.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -10,11 +10,11 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class ManageCategoryComponent implements OnInit {
 
-  viewCategory?:any=[];
+  viewCategory!:Category[];
 
   constructor(private router:Router,private categoryService:CategoryService,private toast:NotificationService) { }
 
-  ngOnInit():any {
+  ngOnInit():void {
     this.reloadData();  
   }
 

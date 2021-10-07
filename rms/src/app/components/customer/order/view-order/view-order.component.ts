@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/services/order/order.service';
+import { Order, OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-view-order',
@@ -9,8 +9,8 @@ import { OrderService } from 'src/app/services/order/order.service';
 })
 export class ViewOrderComponent implements OnInit {
 
-  viewOrder?:any=[];
-  customerId:any;
+  viewOrder!:Order[];
+  customerId:any;//any used for local storage
   
 
   constructor(private router:Router,private orderService:OrderService) { }

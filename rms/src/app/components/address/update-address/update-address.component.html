@@ -5,41 +5,29 @@
         <br>
         <div class="form-group col-md-6">
             <label for="producturl">Address Line</label>
-            <input type="text" class="form-control" name="addressLine" #addressLine="ngModel" [(ngModel)]="address.addressLine" [value]="address.addressLine" ngModel required>
-            <div *ngIf='addressLine.errors && addressLine.touched' class="alert alert-danger">
-
-              <div  [hidden]='!addressLine.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="text" class="form-control" name="addressLine"  [(ngModel)]="address.addressLine" [value]="address.addressLine" ngModel required>
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producturl">City Name</label>
-            <input type="text" class="form-control" name="city" #city="ngModel"  [(ngModel)]="address.city" [value]="address.city"  ngModel  required>
-            <div *ngIf='city.errors && city.touched' class="alert alert-danger">
-
-              <div  [hidden]='!city.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="text" class="form-control" name="city"   [(ngModel)]="address.city" [value]="address.city"  ngModel  required>
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="producturl">Pincode</label>
-            <input type="number" class="form-control" name="pincode" #pincode="ngModel" [(ngModel)]="address.pincode" [value]="address.pincode"  ngModel  required>
-            <div *ngIf='pincode.errors && pincode.touched' class="alert alert-danger">
-
-              <div  [hidden]='!pincode.errors.required'> Provide Address Line</div>
-          </div>
+            <input type="number" class="form-control" name="pincode"  [(ngModel)]="address.pincode" [value]="address.pincode"  ngModel  required>
           </div>
           <br>
           <div class="form-group col-md-6">
             <label for="countryname">Country</label>
-            <select class="form-control"  name="count" [(ngModel)]="address.country" ngModel (ngModelChange)="getState($event)">
+            <select class="form-control"  name="country"  ngModel (ngModelChange)="getState($event)">
               <option *ngFor = "let c of country" [value]=c.id>{{ c.name }}</option>
             </select>
           </div>
           <br>
         <div class="form-group col-md-6">
           <label for="statename">State</label>
-          <select class="form-control"  name="state" [(ngModel)]="address.state" ngModel >
+          <select class="form-control"  name="state" ngModel >
             <option *ngFor = "let c of state" [value]=c.id>{{ c.name }}</option>
           </select>
         </div>
