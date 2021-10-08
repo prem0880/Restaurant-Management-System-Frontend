@@ -1,6 +1,6 @@
 <app-dashboard></app-dashboard>
 <div>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Serial No</th>
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let vieworder of viewOrder">
+            <tr *ngFor="let vieworder of pageOfItems">
                 <td>{{vieworder.id}}</td>
                 <td>{{vieworder.customer.name}}</td>
                 <td>{{vieworder.address.addressLine}}</td>
@@ -32,6 +32,12 @@
               </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewOrder"
+          [pageSize]=5
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 

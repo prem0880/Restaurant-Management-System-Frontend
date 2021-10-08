@@ -1,6 +1,6 @@
 <app-dashboard></app-dashboard>
 <div>
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Serial No</th>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let viewproduct of viewProduct">
+            <tr *ngFor="let viewproduct of pageOfItems">
                 <td>{{viewproduct.id}}</td>
                 <td>{{viewproduct.name}}</td>
                 <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
@@ -28,6 +28,12 @@
               </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewProduct"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 

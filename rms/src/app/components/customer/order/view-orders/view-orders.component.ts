@@ -10,6 +10,7 @@ import { Order, OrderService } from 'src/app/services/order/order.service';
 export class ViewOrdersComponent implements OnInit {
 
   viewOrder!:Order[];
+  pageOfItems: Array<any> = [];
   constructor(private router:Router,private orderService:OrderService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,10 @@ export class ViewOrdersComponent implements OnInit {
       this.viewOrder=response.data
     },error=>console.log(error.error));
   }
-
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
+  }
 
 }

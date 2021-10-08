@@ -11,7 +11,7 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class ManageProductComponent implements OnInit {
 
   viewProduct!:Product[];
-
+  pageOfItems: Array<any> = [];
   constructor(private router:Router,private toast:NotificationService,private productService:ProductService) { }
 
    ngOnInit(): any {
@@ -41,5 +41,10 @@ export class ManageProductComponent implements OnInit {
     this.router.navigate(["/updateProduct",id]);
   }
 
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
+  }
 
 }

@@ -11,7 +11,7 @@ export class ViewOrderComponent implements OnInit {
 
   viewOrder!:Order[];
   customerId:any;//any used for local storage
-  
+  pageOfItems: Array<any> = [];
 
   constructor(private router:Router,private orderService:OrderService) { }
 
@@ -22,5 +22,9 @@ export class ViewOrderComponent implements OnInit {
       this.viewOrder=response.data
     },error=>console.log(error.error));
   }
-
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
+  }
 }

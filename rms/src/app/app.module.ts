@@ -43,6 +43,7 @@ import { ViewProfileComponent } from './components/customer/view-profile/view-pr
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 
 @NgModule({
@@ -87,7 +88,7 @@ import { ManageOrderComponent } from './components/customer/order/manage-order/m
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    
+    JwPaginationModule
 
   ],
   providers: [

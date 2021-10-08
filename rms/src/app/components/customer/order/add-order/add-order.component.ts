@@ -19,7 +19,7 @@ export class AddOrderComponent implements OnInit {
   id!:number;
   quantity!:number;
   productId!:number;
-  productList!:Product |any;//change need:explore
+  productList:any;//change need:explore
   categoryList!: Category[];
   mealId!:number;
   product!:Product;
@@ -61,7 +61,7 @@ export class AddOrderComponent implements OnInit {
         this.productList=response.data;
         console.log(this.productList);
       },error=>console.log(error.error));
-     console.log(this.mealId)
+     console.log(this.mealId) 
    });
 
   }
@@ -73,11 +73,13 @@ export class AddOrderComponent implements OnInit {
     this.productService.getProductByTypeAndCategory(this.productCategory as any as number,this.productType).subscribe((response)=>{
      this.productList=response.data;
      for(let x=0;x<this.productList.length;x++){
-       if(this.productList[x].meal==this.meal){
+       if(this.productList.meal.name==this.meal){
+         console.log(this.productList.meal.name)
           this.product=this.productList[x];
+          console.log(this.productList[x])
        }
      }
-     console.log(this.productList[0].meal);
+     console.log(this.productList[0].meal.name);
       console.log(response.data);
     },error=>console.log(error.error));
   }
