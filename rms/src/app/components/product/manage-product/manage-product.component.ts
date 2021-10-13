@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
@@ -9,11 +10,19 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
   styleUrls: ['./manage-product.component.css']
 })
 export class ManageProductComponent implements OnInit {
-
+ modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
   viewProduct!:Product[];
   pageOfItems: Array<any> = [];
-  constructor(private router:Router,private toast:NotificationService,private productService:ProductService) { }
+  constructor(private router:Router,private toast:NotificationService,private modalService:NgbModal,private productService:ProductService)
+   { this.modalOptions = {
 
+      //it is used for bootsrap ngb modal setup
+
+      backdrop: 'static',
+
+      backdropClass: 'customBackdrop', }
+    }
+  
    ngOnInit(): any {
     this.reloadData(); 
     
@@ -25,16 +34,25 @@ export class ManageProductComponent implements OnInit {
   });
   }
 
-  deleteProduct(id:number) {
+  deleteProduct(content:any,id:number) {
+    this.modalService.open(content, this.modalOptions).result.then(
+
+      () => {
     this.productService.deleteProduct(id).subscribe(response => {
       if(response.statusCode==200){
-        this.toast.showWarn(response.message);
+        this.toast.showSuccess(response.message);
    }
   else{
      this.toast.showFailure(response.message);
    }
 
-    });
+    },
+    (error)=>this.toast.showFailure(error.error.message)
+    );
+  },
+  (reason)=>{}//to catch the promise rejection
+    );
+
   }
 
   updateProduct(id:number) {
@@ -46,5 +64,6 @@ export class ManageProductComponent implements OnInit {
     this.pageOfItems = pageOfItems;
     
   }
+
 
 }

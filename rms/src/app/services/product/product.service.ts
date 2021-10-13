@@ -21,6 +21,10 @@ export class ProductService {
     return this.http.get<any>(`${this.baseUrl}`);
   }
 
+  getAllProductByMeal() : Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/meal`);
+  }
+
   getProductById(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }

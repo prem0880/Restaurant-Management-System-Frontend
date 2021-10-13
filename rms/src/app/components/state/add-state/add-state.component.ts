@@ -21,8 +21,9 @@ export class AddStateComponent implements OnInit {
   }
   addState(state:any) {
     this.service.createState(state).subscribe((response)=>{
-      if(response.statusCode==200){
+      if(response.statusCode==201){
         this.toast.showSuccess(response.message);
+        this.router.navigate(['/viewState']);
    }
   else{
      this.toast.showFailure(response.message);

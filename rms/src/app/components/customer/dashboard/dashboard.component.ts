@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address, AddressService } from 'src/app/services/address/address.service';
 import { Customer, CustomerService } from 'src/app/services/customer/customer.service';
+import { LoginService } from 'src/app/services/login/login.service';
 import { Order, OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -16,10 +17,11 @@ export class DashboardComponent implements OnInit {
   order!: Order;
   customerId!:number;
 
-  constructor(private router:Router,private customerService:CustomerService,private addressService:AddressService,private orderService:OrderService) { }
+  constructor(private router:Router,private loginService:LoginService,private customerService:CustomerService,private addressService:AddressService,private orderService:OrderService) { }
 
   ngOnInit(): void {
     this.customerMail=localStorage.getItem("email");
+    console.log(this.customerMail)
     this.customerService.getCustomerByMail(this.customerMail as any as string).subscribe((response)=>{
       console.log(response.data)
       if(response.statusCode==200){
@@ -28,6 +30,7 @@ export class DashboardComponent implements OnInit {
       console.log(this.customerId)
       }
     });
+    
     console.log(this.customerId);
   }
   logout() {
@@ -54,7 +57,7 @@ export class DashboardComponent implements OnInit {
         id:this.customerId
       };
       this.orderService.addOrder(this.order).subscribe(response=>{
-        this.router.navigate(["addOrder",this.customerId]);
+        this.router.navigate(["createOrder",this.customerId]);
     })
     })
 }

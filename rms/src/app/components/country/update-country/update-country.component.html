@@ -1,11 +1,27 @@
 <app-admin></app-admin>
-<div [hidden]="submitted">
-    <form #userForm="ngForm" (ngSubmit)='updateCountry(userForm.value)' style="margin-top: 50px; margin-left: 400px;">
+<div>
+    <form #userForm="ngForm" (ngSubmit)='userForm.form.valid && updateCountry(userForm.value)' style="margin-top: 50px; margin-left: 400px;">
         <h3 style="margin-left: 130px;">Update Country</h3>
         <br>    
           <div class="form-group col-md-6">
             <label for="countryname">Enter Country Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Country name"  [(ngModel)]="country.name" [value]="country.name" required>
+            <input type="text" class="form-control" name="name" pattern="^[a-zA-Z ]*$" #name="ngModel" placeholder="Enter Country name"  [(ngModel)]="country.name" [value]="country.name" required>
+        </div>
+        <div class="text-danger">
+          <small
+            *ngIf="
+              (name.touched || userForm.submitted) &&
+              name.errors?.required
+            "
+            >Country Name is required</small
+          >
+          <small
+          *ngIf="
+            (name.touched || name.dirty) &&
+            name.errors?.pattern
+          "
+          >Country name can contain alphabets</small
+        >
         </div>
           <br>
         <button type="submit" style="margin-left: 150px;"  class="btn btn-primary">Update Country</button>

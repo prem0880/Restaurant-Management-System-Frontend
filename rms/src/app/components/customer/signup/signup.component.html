@@ -1,33 +1,71 @@
 <div class="form-control">
-    <form #userForm="ngForm" (ngSubmit)='signUp(userForm.value)' style=" margin-left: 400px;">
+    <form #userForm="ngForm" (ngSubmit)='userForm.form.valid && onCheck(email.value,phoneNumber.value) && signUp(userForm.value)' style=" margin-left: 400px;">
         <h3 style="margin-left: 130px;">Sign Up</h3>
         <div class="form-group col-md-6">
             <label for="productname">Username</label>
-            <input type="text" class="form-control" name="name" #name="ngModel" ngModel required>
-            <div *ngIf='name.errors && name.touched' class="alert alert-danger">
-
-              <div  [hidden]='!name.errors.required'> Provide Name</div>
-          </div>
+            <input type="text" class="form-control" name="name" #name="ngModel" pattern="^[a-zA-Z ]*$" ngModel required>
+            <div class="text-danger">
+              <small
+                *ngIf="
+                  (name.touched || userForm.submitted) &&
+                  name.errors?.required
+                "
+                >Username is required</small
+              >
+              <small
+              *ngIf="
+                (name.touched || name.dirty) &&
+                name.errors?.pattern
+              "
+              >Username can contain alphabets</small
+            >
+            </div>
           </div>
           <br>
         <div class="form-group col-md-6">
             <label for="producturl">Phone Number</label>
-            <input type="number" class="form-control" name="phoneNumber" #phoneNumber="ngModel" ngModel required>
-            <div *ngIf='phoneNumber.errors && phoneNumber.touched' class="alert alert-danger">
-
-              <div  [hidden]='!phoneNumber.errors.required'> Provide Phone Number</div>
-          </div>
-        </div>
+            <input type="number" class="form-control" name="phoneNumber" #phoneNumber="ngModel" pattern="[0-9]{10}" ngModel required>
+            <small class="text-danger" *ngIf="!isValidPhoneNumber"> Phone Number already exists</small>
+            <div class="text-danger">
+              <small
+                *ngIf="
+                  (phoneNumber.touched || userForm.submitted) &&
+                  phoneNumber.errors?.required
+                "
+                >Phone Number is required</small
+              >
+              <small
+                *ngIf="
+                  (phoneNumber.touched || phoneNumber.dirty) &&
+                  phoneNumber.errors?.pattern
+                "
+                >Phone Number contain 10 numbers</small
+              >
+            </div>  
+         </div>
           <br>
           <div class="form-group col-md-6">
             <label for="productbrand">Email Address</label>
-            <input type="email" class="form-control" name="email" #email="ngModel" ngModel required>
-            <div *ngIf='email.errors && email.touched' class="alert alert-danger">
-
-              <div  [hidden]='!email.errors.required'> Provide Email Address</div>
-          </div>
-          </div>
+            <input type="email" class="form-control" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel required>
+          <small class="text-danger" *ngIf="!isValidEmail"> Email Id already exists</small>
+          <div class="text-danger">
+            <small
+              *ngIf="
+                (email.touched || userForm.submitted) &&
+                email.errors?.required
+              "
+              >Email Address is required</small
+            >
+            <small
+            *ngIf="
+              (email.touched || email.dirty) &&
+              email.errors?.pattern
+            "
+            >Email Address can contain alphanumerics,symbols</small
+          >
+          </div>  
+        </div>
           <br>
-      <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Proceed for Address</button>
+      <button type="submit" style="margin-left: 150px;"  class="btn btn-primary">Proceed for Address</button>
       </form>
 </div>

@@ -32,6 +32,11 @@ export class OrderService {
   {
     return this.http.get(`${this.baseUrl}`)
   }
+
+  getAllSuccessOrder():Observable<HttpResponseStatus>
+  {
+    return this.http.get(`${this.baseUrl}/success`)
+  }
   
   getOrderById(orderId:number):Observable<HttpResponseStatus> 
   {

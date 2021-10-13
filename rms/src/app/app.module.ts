@@ -44,6 +44,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { CreateOrderComponent } from './components/customer/create-order/create-order.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -76,7 +78,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     ViewProductComponent,
     ViewCustomerComponent,
     ViewProfileComponent,
-    ManageOrderComponent
+    ManageOrderComponent,
+    CreateOrderComponent
 
   ],
   imports: [
@@ -88,7 +91,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    JwPaginationModule
+    JwPaginationModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [

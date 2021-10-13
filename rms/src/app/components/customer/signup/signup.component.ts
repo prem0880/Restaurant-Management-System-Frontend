@@ -11,6 +11,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class SignupComponent implements OnInit {
 
+  isValidEmail:boolean=true;
+  isValidPhoneNumber:boolean=true;
   constructor(private customerService:CustomerService,private toast:NotificationService, private router : Router,private loginService:LoginService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class SignupComponent implements OnInit {
         role : "Customer",
         password : customer.phoneNumber
       }
-      if(response.statusCode==200){
+      if(response.statusCode==201){
         this.toast.showSuccess(response.message);
        }
      else{
@@ -37,4 +39,47 @@ export class SignupComponent implements OnInit {
       this.router.navigate(["addAddress",response.data]);
     });
   }
+
+  onCheck(mail:string,phone:number){
+    console.log(mail+" "+phone)
+   this.onCheckMail(mail) ;
+   this.onCheckPhone(phone);
+   return this.isValidEmail && this.isValidPhoneNumber ;
+  }
+  onCheckMail(mail:string):boolean{
+      this.customerService.getCustomerByMail(mail).subscribe((response)=>{
+        console.log(response)
+        if(response.data==null){
+          this.isValidEmail=true;
+          return true
+        }
+        else{
+          this.isValidEmail=false
+          return false;
+        }
+      },error=> {
+        this.isValidEmail=true;
+        return true});
+      return false;
+  }
+
+  onCheckPhone(phoneNumber:number):boolean{
+    this.customerService.getCustomerByPhone(phoneNumber ).subscribe((response)=>{
+      console.log(response)
+      if(response.data==null){
+        console.log(response)
+        this.isValidPhoneNumber=true;
+        return true
+      }
+      else{
+        this.isValidPhoneNumber=false
+        return false;
+      }
+    },error=> {
+      console.log(error);
+      this.isValidPhoneNumber=true;
+      return true});
+    return false;
+}
+
 }

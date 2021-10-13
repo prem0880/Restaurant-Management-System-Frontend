@@ -3,7 +3,6 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Serial No</th>
                 <th>Name</th>
                 <th>Image</th>
                 <th>Description</th>
@@ -16,7 +15,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let viewproduct of pageOfItems">
-                <td>{{viewproduct.id}}</td>
                 <td>{{viewproduct.name}}</td>
                 <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
                 <td>{{viewproduct.description}}</td>

@@ -27,6 +27,11 @@ export class CustomerService {
     return this.http.get<HttpResponseStatus>(`${this.baseUrl}/mail/${email}`);
   }
 
+  getCustomerByPhone(phoneNumber:number):Observable<HttpResponseStatus>{
+    console.log(phoneNumber)
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}/phone/${phoneNumber}`);
+  }
+
 
   updateCustomer(id:number,customer:Customer):Observable<HttpResponseStatus>{
     return this.http.put(`${this.baseUrl}/${id}`, customer);

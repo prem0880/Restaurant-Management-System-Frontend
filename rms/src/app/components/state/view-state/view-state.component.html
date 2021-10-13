@@ -15,7 +15,6 @@
     <table class="table table-bordered" *ngIf="display">
         <thead>
             <tr>
-                <th>Serial No</th>
                 <th>Name</th>
                 <th>Created On</th>
                 <th>Updated On</th>
@@ -23,7 +22,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let viewstate of viewState">
-                <td>{{viewstate.id}}</td>
                 <td>{{viewstate.name}}</td>
                 <td>{{viewstate.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewstate.updatedOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>

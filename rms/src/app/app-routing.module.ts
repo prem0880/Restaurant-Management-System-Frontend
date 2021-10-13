@@ -28,9 +28,11 @@ import { ViewProductComponent } from './components/product/view-product/view-pro
 import { ViewCustomerComponent } from './components/customer/view-customer/view-customer.component';
 import { ViewProfileComponent } from './components/customer/view-profile/view-profile.component';
 import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
+import { CreateOrderComponent } from './components/customer/create-order/create-order.component';
 
 const routes: Routes = [
-{path : '', redirectTo : 'login', pathMatch : 'full'},
+//{path : '', redirectTo : 'login', pathMatch : 'full'},
+
  {path:"admin",component:AdminComponent},
  {path:"addCategory",component:AddCategoryComponent},
  {path:"manageCategory",component:ManageCategoryComponent},
@@ -58,8 +60,9 @@ const routes: Routes = [
  {path:"processOrder",component:ProcessOrderComponent},
  {path:"viewOrders",component:ViewOrderComponent},
  {path:"viewAllOrder",component:ViewOrdersComponent},
- {path:"manageOrder",component:ManageOrderComponent}
-
+ {path:"manageOrder",component:ManageOrderComponent},
+ {path:"createOrder/:id",component:CreateOrderComponent},
+ {path:'**',component:LoginComponent}
 ];
 
 @NgModule({

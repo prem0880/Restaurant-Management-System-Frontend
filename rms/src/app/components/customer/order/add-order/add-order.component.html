@@ -1,12 +1,12 @@
 <app-dashboard></app-dashboard>
 <div class="container-fluid mb-3" >
     <h3 style="text-align: center;"><b><i>Add order</i></b></h3>
-    <form [hidden]="submitted" (ngSubmit)="addOrderItem()" #userForm="ngForm">
+    <form (ngSubmit)="addOrderItem()" #userForm="ngForm">
         <table id="addOrder" class="table table-bordered">
             <tr>
             <th>Type of Food Item</th>
             <td>
-                <select class="form-control"  name="type"  ngModel (ngModelChange)="getType($event)">
+                <select class="form-control"  name="type"  ngModel (ngModelChange)="getType($event)" required>
                     <option value="" selected disabled>Select the Type</option>
                     <option>Veg</option>
                     <option>Non-Veg</option>
@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <th>Category</th>
-                <td><select class="form-control" name="category" (ngModelChange)="getCategory($event)" ngModel >
+                <td><select class="form-control" name="category" (ngModelChange)="getCategory($event)" ngModel required>
                     <option value="" selected disabled>Select the Category</option>
                     <option *ngFor="let category of categoryList" [value]=category.id>{{category.name}}</option>
                 </select></td>
@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <th>Food</th>
-                <td><select class="form-control"  name="product" ngModel (ngModelChange)="getProduct($event)" >
+                <td><select class="form-control"  name="product" ngModel (ngModelChange)="getProduct($event)"required >
                     <option value="" selected disabled>Select the product</option>
                     <option *ngFor="let product of productList" [value]=product.id>{{product.name}}</option>
                 </select></td>  
@@ -42,7 +42,8 @@
             </tr>
             <tr>
                 <th>Quantity</th>
-                <td><input type="number" class="form-control" name="quantity"  ngModel (ngModelChange)="getQuantity($event)" placeholder="Enter the Quantity of Food Items"></td>
+                <td><input type="number" class="form-control" name="quantity" #quantity="ngModel" required  min=1 max=15 ngModel (ngModelChange)="getQuantity($event)" placeholder="Enter the Quantity of Food Items"></td>
+
             </tr>
         </table>
         <button class="btn btn-success" [disabled]="userForm.invalid" style="margin-left: 15cm;"  type="submit">Add Item</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn2" class="btn btn-warning" type="reset">Cancel</button>

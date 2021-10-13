@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
                  this.router.navigate(['admin']);
             }else if(response.data=="Customer"){
                   console.log(response.data);
-                  this.toast.showSuccess("Welcome customer!");
+                  this.toast.showSuccess("Logged In Successfully!");
                   localStorage.setItem("email",credential.email);
-                  this.router.navigate(['dashboard']);
+                  this.router.navigate(['/viewProduct']);
             }else{
               this.toast.showFailure("Incorrect Credentials");
             }

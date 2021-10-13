@@ -11,6 +11,7 @@ import { Order, OrderService } from 'src/app/services/order/order.service';
 export class ManageOrderComponent implements OnInit {
 
   viewOrder!:Order[];
+  length:number=0;
   constructor(private router:Router,private toast:NotificationService,private orderService:OrderService) { }
 
   ngOnInit(): void {
@@ -18,16 +19,16 @@ export class ManageOrderComponent implements OnInit {
   }
 
   reload(){
-    this.orderService.getAllOrder().subscribe((response)=>{
+    this.orderService.getAllSuccessOrder().subscribe((response)=>{
       console.log(response.data)
       this.viewOrder=response.data
+      this.length=this.viewOrder==null?0:this.viewOrder.length;
     },error=>console.log(error.error));
   }
 
   approve(vieworder:any){
     console.log(vieworder.id);
-    console.log("approve")
-    this.orderService.updateOrderStatus(vieworder.id,"approve").subscribe((response)=>{
+    this.orderService.updateOrderStatus(vieworder.id,"Approved").subscribe((response)=>{
         if(response.statusCode==200){
           this.toast.showSuccess(response.message)
           this.reload();
@@ -40,8 +41,7 @@ export class ManageOrderComponent implements OnInit {
   }
   deny(vieworder:any){
     console.log(vieworder.id);
-    console.log("deny")
-    this.orderService.updateOrderStatus(vieworder.id,"deny").subscribe((response)=>{
+    this.orderService.updateOrderStatus(vieworder.id,"Denied").subscribe((response)=>{
       if(response.statusCode==200){
         this.toast.showSuccess(response.message)
         this.reload();

@@ -1,29 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Category, CategoryService } from 'src/app/services/category/category.service';
-import { MealService } from 'src/app/services/meal/meal.service';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { OrderItem, OrderItemService } from 'src/app/services/order-item/order-item.service';
 import { Order, OrderService } from 'src/app/services/order/order.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
-  selector: 'app-add-order',
-  templateUrl: './add-order.component.html',
-  styleUrls: ['./add-order.component.css']
+  selector: 'app-create-order',
+  templateUrl: './create-order.component.html',
+  styleUrls: ['./create-order.component.css']
 })
-export class AddOrderComponent implements OnInit {
- 
+export class CreateOrderComponent implements OnInit {
+  modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
+  viewProduct!:Product[];
+  pageOfItems: Array<any> = [];
   id!:number;
   quantity!:number;
   productId!:number;
-  productList:any=[];//change need:explore
-  categoryList!: Category[];
-  mealId!:number;
   product!:Product;
-  productType!:string;
-  productCategory!:number;
   productQuantity!:number;
   order!:Order
   orderItem!:OrderItem|any;//error because of relationship so, any used 
@@ -31,63 +26,66 @@ export class AddOrderComponent implements OnInit {
   orderedItems!:OrderItem[]
   length!:number
   meal!:string;
+  term!:string;
   submitted:boolean=false;
 
 
-  constructor(private productService:ProductService,private toast:NotificationService,private orderService:OrderService,private orderItemService:OrderItemService,private router:Router, private route : ActivatedRoute,private categoryService:CategoryService,private mealService:MealService) {
-    this.id = this.route.snapshot.params['id'];
-   }
+  constructor(private router:Router,private productService:ProductService,private toast:NotificationService,private modalService:NgbModal,private orderService:OrderService,private orderItemService:OrderItemService,private route : ActivatedRoute) 
+  {   this.id = this.route.snapshot.params['id'];
+    this.modalOptions = {
+    backdrop: 'static',
+    backdropClass: 'customBackdrop', }
+  }
+
+
 
   ngOnInit(): void {
-    this.categoryService.getAllCategory().subscribe( response => {
-      console.log(response.data)
-      this.categoryList = response.data;
-      console.log(this.categoryList)
+    this.productService.getAllProductByMeal().subscribe( response => {
+      console.log(response); 
+      this.viewProduct = response.data;
   });
-  }
 
-  getType(type:any){
-    this.productType=type;
-  }
 
-  getMeal(meal:any){
-    console.log(meal);
-    this.mealService.getMealByName(meal).subscribe( response => {
-     this.mealId = response.data;
-     console.log(this.mealId)
-     this.productService.getProductByMeal(this.mealId).subscribe((response)=>{
-        this.productList=response.data;
-        console.log(this.productList);
-      },error=>console.log(error.error));
-     console.log(this.mealId) 
-   });
-
+  
+  console.log(this.viewProduct[0])
   }
 
 
-  getCategory(category:any){
-    this.productCategory=category;
-    console.log(this.productType+" "+this.productCategory);
-    this.productService.getProductByTypeAndCategory(this.productCategory as any as number,this.productType).subscribe((response)=>{
-     this.productList=response.data;
-     console.log(this.productList[0]);
-    },error=>console.log(error.error));
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
 
-  getProduct(product:any){
-    this.productId=product;
-    console.log(this.productId);
+  addProduct(content:any,id:number){
+    this.productId=id;
+this.modalService.open(content, this.modalOptions).result.then(
+  
+      () => {
+
+       
+  },
+  (reason)=>{
+  }//to catch the promise rejection
+    );
+
+  }
+
+  getProduct(){
     this.productService.getProductById(this.productId).subscribe((response)=>{
       this.product=response.data;
       console.log(this.product)
     },error=>console.log(error));
   }
 
-  getQuantity(quantity:any){
-    this.productQuantity=quantity;
-    console.log(this.productQuantity)
+  getQuantity(value:any) {
+    console.log(value);
+    this.productQuantity=value;
+    this.modalService.dismissAll();
+    this.getProduct();
+   this.addOrderItem();
   }
-
+ 
 
   addOrderItem(){
     console.log(this.id)

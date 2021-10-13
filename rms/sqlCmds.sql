@@ -8,6 +8,8 @@ select * from category;
 
 select * from meal;
 
+desc product;
+
 select * from product;
 
 select * from state;
@@ -24,6 +26,8 @@ select * from order_item;
 
 select * from login;
 
+insert into login(email,password,role) values("admin@gmail.com","admin","Admin");
+
 desc login;
 
 truncate table login;
@@ -36,9 +40,9 @@ truncate table orders;
 
 truncate table order_item;
 
-delete from orders where id=11;
+delete from orders where id=10;
 
-delete from order_item where id=12;
+delete from order_item where id=6;
 
 
 select * from Login  where email_id="yo";

@@ -44,7 +44,7 @@ export class AddAddressComponent implements OnInit {
     console.log(address.state);
     this.addressService.addAddress(address).subscribe((response)=>{
       console.log(address);
-      if(response.statusCode==200){
+      if(response.statusCode==201){
         this.toast.showSuccess(response.message);
        }
      else{

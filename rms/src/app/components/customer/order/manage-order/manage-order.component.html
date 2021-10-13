@@ -1,9 +1,8 @@
 <app-admin></app-admin>
 <div>
-    <table class="table table-bordered">
+    <table class="table table-bordered" *ngIf="length>0 ;else elseBlock">
         <thead>
             <tr>
-                <th>Serial No</th>
                 <th>Customer Name</th>
                 <th>City</th>
                 <th>Pincode</th>
@@ -17,9 +16,8 @@
         </thead>
         <tbody *ngFor="let vieworder of viewOrder">
             
-            <tr *ngIf="vieworder.status=='SUCCESS'">
+            <tr>
                
-                <td>{{vieworder.id}}</td>
                 <td>{{vieworder.customer.name}}</td>
                 <td>{{vieworder.address.city}}</td>
                 <td>{{vieworder.address.pincode}}</td>
@@ -37,4 +35,7 @@
       </table>
       
 </div>
+<ng-template #elseBlock>
+    <h5 style="text-align: center; color:darkviolet ; "  > No Orders to Process </h5> 
+</ng-template>
 

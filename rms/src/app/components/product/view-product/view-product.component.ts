@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product, ProductService } from 'src/app/services/product/product.service';
-import { TimeConverterService } from 'src/app/services/time/time-converter.service';
 
 @Component({
   selector: 'app-view-product',
@@ -11,10 +10,11 @@ import { TimeConverterService } from 'src/app/services/time/time-converter.servi
 export class ViewProductComponent implements OnInit {
   viewProduct!:Product[];
   pageOfItems: Array<any> = [];
-  constructor(private router:Router,private productService:ProductService,private time:TimeConverterService) { }
+  constructor(private router:Router,private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getAllProduct().subscribe( response => {
+    this.productService.getAllProductByMeal().subscribe( response => {
+      console.log(response); 
       this.viewProduct = response.data;
   });
 

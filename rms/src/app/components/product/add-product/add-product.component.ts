@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category, CategoryService } from 'src/app/services/category/category.service';
 import { Meal, MealService } from 'src/app/services/meal/meal.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -17,7 +18,7 @@ export class AddProductComponent implements OnInit {
 
   meal!:Meal[];
 
-  constructor(private categoryService:CategoryService,private toast:NotificationService,private mealService:MealService,private productService:ProductService) { }
+  constructor(private categoryService:CategoryService,private router:Router,private toast:NotificationService,private mealService:MealService,private productService:ProductService) { }
 
   ngOnInit(): void {
 
@@ -42,8 +43,9 @@ addProduct(product:Product) {
     "id":Number(product.meal as any as number)
   }
   this.productService.createProduct(product).subscribe((response) => {
-    if(response.statusCode==200){
+    if(response.statusCode==201){
       this.toast.showSuccess(response.message);
+      this.router.navigate(['/manageProduct']);
  }
 else{
    this.toast.showFailure(response.message);

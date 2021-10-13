@@ -49,7 +49,7 @@ export class ProcessOrderComponent implements OnInit {
   {
     this.orderDetails=new Order();
     this.orderDetails.modeOfPayment=this.ProcessOrderForm.get('modeOfPayment')?.value;
-    this.orderDetails.status="SUCCESS";
+    this.orderDetails.status="Success";
     this.orderDetails.totalPrice=this.orderDetail.totalPrice
     this.orderDetails.customer={
       id:this.customerId
@@ -60,13 +60,13 @@ export class ProcessOrderComponent implements OnInit {
     this.orderService.updateOrder(this.orderDetail.id,this.orderDetails).subscribe(response=>{
       console.log(response.message)
       if(response.statusCode==200){
-        this.toast.showSuccess(response.message);
+        this.toast.showSuccess("Your Transaction has been successful");
+        this.router.navigate(['/viewOrder']);
        }
      else{
      this.toast.showFailure(response.message);
      }
-      this.toast.showInfo("Your Transaction has been successful! You will be redirected to home page")
-      this.router.navigate(['dashboard']);
+
     })
   }
 
