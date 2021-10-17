@@ -28,6 +28,11 @@ export class LoginService {
  
   }
 
+  updatePassword(login:Login, password:string):Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${password}`,login);
+  }
+
+
 }
 export class Login{
   id?:number;

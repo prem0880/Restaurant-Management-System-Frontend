@@ -29,6 +29,7 @@ import { ViewCustomerComponent } from './components/customer/view-customer/view-
 import { ViewProfileComponent } from './components/customer/view-profile/view-profile.component';
 import { ManageOrderComponent } from './components/customer/order/manage-order/manage-order.component';
 import { CreateOrderComponent } from './components/customer/create-order/create-order.component';
+import { UpdatePasswordComponent } from './components/customer/update-password/update-password.component';
 
 const routes: Routes = [
 //{path : '', redirectTo : 'login', pathMatch : 'full'},
@@ -62,6 +63,7 @@ const routes: Routes = [
  {path:"viewAllOrder",component:ViewOrdersComponent},
  {path:"manageOrder",component:ManageOrderComponent},
  {path:"createOrder/:id",component:CreateOrderComponent},
+ {path:"updatePassword",component:UpdatePasswordComponent},
  {path:'**',component:LoginComponent}
 ];
 

@@ -46,6 +46,7 @@ import { ManageOrderComponent } from './components/customer/order/manage-order/m
 import { JwPaginationModule } from 'jw-angular-pagination';
 import { CreateOrderComponent } from './components/customer/create-order/create-order.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { UpdatePasswordComponent } from './components/customer/update-password/update-password.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ViewCustomerComponent,
     ViewProfileComponent,
     ManageOrderComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    UpdatePasswordComponent
 
   ],
   imports: [

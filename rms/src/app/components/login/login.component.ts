@@ -10,7 +10,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  togglePassword:boolean=true;
+  setTogglePassword(){
+    this.togglePassword=!this.togglePassword;
+  }
   constructor(private router:Router,private customerService:CustomerService,private toast:NotificationService,private loginService:LoginService) { }
 
   ngOnInit(): void {

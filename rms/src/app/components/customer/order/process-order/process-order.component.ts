@@ -61,7 +61,7 @@ export class ProcessOrderComponent implements OnInit {
       console.log(response.message)
       if(response.statusCode==200){
         this.toast.showSuccess("Your Transaction has been successful");
-        this.router.navigate(['/viewOrder']);
+        this.router.navigate(['/viewOrders']);
        }
      else{
      this.toast.showFailure(response.message);

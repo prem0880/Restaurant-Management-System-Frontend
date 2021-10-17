@@ -2,7 +2,7 @@
     <form #userForm="ngForm" (ngSubmit)='userForm.form.valid && onLogin(userForm.value)' style=" margin-left: 400px;">
         <h3 style="margin-left: 150px;">Login</h3>
         <div class="form-group col-md-6">
-            <label for="email">Email Address</label>
+            <label for="email"><b>Email Address</b></label>
             <input type="email" class="form-control" name="email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"   ngModel required>
             <div class="text-danger">
               <small
@@ -23,8 +23,8 @@
           </div>
           <br>
         <div class="form-group col-md-6">
-            <label for="password" >Password</label>
-            <input type="password" class="form-control" name="password" #password="ngModel" ngModel required>
+            <label for="password" ><b>Password</b></label>
+            <input [type]="togglePassword?'password':'text'" class="form-control" name="password" #password="ngModel" ngModel required>
             <div class="text-danger">
               <small
                 *ngIf="
@@ -34,6 +34,11 @@
                 >Password is required</small
               >
               </div>
+              <div>
+                <label for="toggler" style="font-size: small;">Show password</label>
+                <input name="toggler"  class="toggler" type="checkbox" (click)="setTogglePassword()">
+              </div>
+             
           </div>
           <br>
       <button type="submit" style="margin-left: 160px;"  class="btn btn-info">Login</button>

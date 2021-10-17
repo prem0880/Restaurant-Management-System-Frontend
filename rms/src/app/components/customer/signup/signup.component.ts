@@ -24,8 +24,10 @@ export class SignupComponent implements OnInit {
       const login = {
         email : customer.email,
         role : "Customer",
-        password : customer.phoneNumber
+        password :response.data.password
       }
+      console.log(response.data)
+      console.log(response.data.password)
       if(response.statusCode==201){
         this.toast.showSuccess(response.message);
        }
@@ -36,7 +38,7 @@ export class SignupComponent implements OnInit {
       this.loginService.save(login).subscribe((response) => {
         console.log(response);
       });
-      this.router.navigate(["addAddress",response.data]);
+      this.router.navigate(["addAddress",response.data.id]);
     });
   }
 

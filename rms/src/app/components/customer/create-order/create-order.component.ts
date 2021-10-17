@@ -100,6 +100,7 @@ this.modalService.open(content, this.modalOptions).result.then(
       this.orderItem.order={
         id:Number(this.orderId)
       }
+      
       console.log(this.orderItem)
       this.orderItemService.addOrderItem(this.orderItem).subscribe(response=>{
         console.log(response.message)

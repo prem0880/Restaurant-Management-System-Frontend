@@ -20,9 +20,6 @@ select * from customer;
 
 select * from address;
 
-select * from orders;
-
-select * from order_item;
 
 select * from login;
 
@@ -40,9 +37,13 @@ truncate table orders;
 
 truncate table order_item;
 
-delete from orders where id=10;
+select * from orders;
 
-delete from order_item where id=6;
+select * from order_item;
+
+delete from orders where id=26;
+
+delete from order_item where id=20;
 
 
 select * from Login  where email_id="yo";
