@@ -10,11 +10,16 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class UpdatePasswordComponent implements OnInit {
 
-  togglePassword:boolean=true;
+  toggleOldPassword:boolean=true;
+  toggleNewPassword:boolean=true;
   email:any;
-  setTogglePassword(){
-    this.togglePassword=!this.togglePassword;
+  setToggleOldPassword(){
+    this.toggleOldPassword=!this.toggleOldPassword;
   }
+  setToggleNewPassword(){
+    this.toggleNewPassword=!this.toggleNewPassword;
+  }
+
 
   constructor(private loginService:LoginService,private router:Router,private toaster:NotificationService) { }
 

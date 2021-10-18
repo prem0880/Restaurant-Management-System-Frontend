@@ -46,8 +46,10 @@ export class ManageProductComponent implements OnInit {
      this.toast.showFailure(response.message);
    }
 
-    },
-    (error)=>this.toast.showFailure(error.error.message)
+    },error=>{
+      if(error.data==null)
+      this.toast.showFailure("This action can't be performed,Since it has dependencies");
+    }
     );
   },
   (reason)=>{}//to catch the promise rejection

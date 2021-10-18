@@ -46,7 +46,11 @@ export class ManageMealComponent implements OnInit {
        }
     
              this.reloadData();
-            });
+            },error=>{
+              if(error.data==null)
+              this.toast.showFailure("This action can't be performed,Since it has dependencies");
+            }
+              );
     
       },
 

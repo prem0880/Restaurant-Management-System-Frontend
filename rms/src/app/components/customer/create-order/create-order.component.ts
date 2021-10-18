@@ -46,8 +46,6 @@ export class CreateOrderComponent implements OnInit {
   });
 
 
-  
-  console.log(this.viewProduct[0])
   }
 
 

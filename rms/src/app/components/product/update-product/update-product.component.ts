@@ -13,7 +13,7 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class UpdateProductComponent implements OnInit {
 
   submitted:boolean=false;
-  product!:Product;
+  product:Product=new Product();
   category!:Category[];
   meal!:Meal[];
   id!:number;

@@ -17,8 +17,8 @@ export class ProcessOrderComponent implements OnInit {
   orderDetail!:Order
   orderDetails!:Order
   customerId:Number|any//any used because of local storage
-  address!:Address[]
-  customer!:Customer
+  address!:Address[];
+  customer:Customer=new Customer();
   
   constructor(private orderService:OrderService,private toast:NotificationService,private router:Router,private addressService:AddressService,private customerService:CustomerService) { }
   ProcessOrderForm=new FormGroup({

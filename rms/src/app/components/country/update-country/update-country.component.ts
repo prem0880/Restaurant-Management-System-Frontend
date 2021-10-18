@@ -12,7 +12,7 @@ export class UpdateCountryComponent implements OnInit {
 
   submitted:boolean=false;
   id!:number;
-  country!:Country;
+  country:Country=new Country();
 
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private countryService:CountryService) { }
 

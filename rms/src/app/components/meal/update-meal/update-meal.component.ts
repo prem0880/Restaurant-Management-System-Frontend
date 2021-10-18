@@ -12,7 +12,7 @@ export class UpdateMealComponent implements OnInit {
 
   submitted:boolean=false;
   id!:number;
-  meal!:Meal;
+  meal:Meal=new Meal();
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private mealService:MealService) { 
   }
 

@@ -8,7 +8,7 @@ import { Customer, CustomerService } from 'src/app/services/customer/customer.se
 })
 export class ViewProfileComponent implements OnInit {
 
-  viewCustomer!:Customer;
+  viewCustomer:Customer=new Customer();
   customerId:any;//any for local storage
 
   constructor(private customerService:CustomerService) { }

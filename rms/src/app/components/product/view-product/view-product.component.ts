@@ -18,7 +18,6 @@ export class ViewProductComponent implements OnInit {
       this.viewProduct = response.data;
   });
 
-  console.log(this.viewProduct[0])
   }
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items

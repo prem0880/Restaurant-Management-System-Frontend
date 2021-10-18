@@ -12,7 +12,7 @@ export class UpdateCategoryComponent implements OnInit {
   
   submitted:boolean=false;
   id!:number;
-  category!:Category;
+  category:Category=new Category();
 
   constructor(private router:Router,private route:ActivatedRoute,private toast:NotificationService,private categoryService:CategoryService) { 
   }
