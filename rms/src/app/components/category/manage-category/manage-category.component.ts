@@ -12,6 +12,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class ManageCategoryComponent implements OnInit {
   modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
   viewCategory!:Category[];
+  pageOfItems: Array<any> = [];
+  term!:string;
+
 
   constructor(private router:Router,private categoryService:CategoryService,private modalService:NgbModal,private toast:NotificationService) { 
 
@@ -66,6 +69,12 @@ export class ManageCategoryComponent implements OnInit {
 
   updateCategory(id:number) {
     this.router.navigate(["/updateCategory",id]);
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
   
 

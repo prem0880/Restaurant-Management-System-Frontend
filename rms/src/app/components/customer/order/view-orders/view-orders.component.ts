@@ -11,6 +11,7 @@ export class ViewOrdersComponent implements OnInit {
 
   viewOrder!:Order[];
   pageOfItems: Array<any> = [];
+  term!:string;
   constructor(private router:Router,private orderService:OrderService) { }
 
   ngOnInit(): void {

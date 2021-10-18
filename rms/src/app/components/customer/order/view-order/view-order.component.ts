@@ -12,6 +12,7 @@ export class ViewOrderComponent implements OnInit {
   viewOrder!:Order[];
   customerId:any;//any used for local storage
   pageOfItems: Array<any> = [];
+  term!:string;
 
   constructor(private router:Router,private orderService:OrderService) { }
 

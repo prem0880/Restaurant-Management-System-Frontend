@@ -11,6 +11,7 @@ export class ViewStateComponent implements OnInit {
 
   viewCountry !: Country[];
   viewState !: State[];
+  pageOfItems: Array<any> = [];
   display:boolean=false;
   constructor(private stateService : StateService, private countryService : CountryService) { }
 
@@ -26,5 +27,11 @@ export class ViewStateComponent implements OnInit {
       this.viewState = response.data;
       this.display=true;
     })
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
 }

@@ -12,6 +12,7 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class ManageProductComponent implements OnInit {
  modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
   viewProduct!:Product[];
+  term!:string;
   pageOfItems: Array<any> = [];
   constructor(private router:Router,private toast:NotificationService,private modalService:NgbModal,private productService:ProductService)
    { this.modalOptions = {

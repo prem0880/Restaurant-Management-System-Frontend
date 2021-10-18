@@ -1,5 +1,9 @@
 <app-admin></app-admin>
 <div>
+  <div class="form-group col-md-4" style="margin-left: 65%;">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div> 
+<br>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -10,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let viewcountry of viewCountry">
+            <tr *ngFor="let viewcountry of pageOfItems">
                 <td>{{viewcountry.name}}</td>
                 <td>{{viewcountry.createdOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewcountry.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
@@ -20,7 +24,13 @@
             </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewCountry |filter:term"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 
 <ng-template #mymodal let-modal>

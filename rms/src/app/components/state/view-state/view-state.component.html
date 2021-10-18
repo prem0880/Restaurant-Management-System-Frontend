@@ -21,14 +21,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let viewstate of viewState">
+            <tr *ngFor="let viewstate of pageOfItems">
                 <td>{{viewstate.name}}</td>
                 <td>{{viewstate.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewstate.updatedOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
               </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewState"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 
 

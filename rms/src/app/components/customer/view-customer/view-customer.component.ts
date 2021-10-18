@@ -10,6 +10,9 @@ import { Customer, CustomerService } from 'src/app/services/customer/customer.se
 export class ViewCustomerComponent implements OnInit {
 
   viewCustomer!:Customer[];
+  pageOfItems: Array<any> = [];
+  term!:string;
+
 
   constructor(private router:Router,private customerService:CustomerService) { }
 
@@ -17,6 +20,12 @@ export class ViewCustomerComponent implements OnInit {
     this.customerService.getAllCustomer().subscribe((response)=>{
       this.viewCustomer=response.data;
     },error=>console.log(error.error));
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
 
 }

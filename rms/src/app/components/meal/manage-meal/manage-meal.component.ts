@@ -11,8 +11,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class ManageMealComponent implements OnInit {
   modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
-  
-
+  pageOfItems: Array<any> = [];
+  term!:string;
   viewMeal!:Meal[];
 
   constructor(private router:Router,private toast:NotificationService,private modalService:NgbModal,private mealService:MealService) {
@@ -62,6 +62,12 @@ export class ManageMealComponent implements OnInit {
 
   updateMeal(id:number) {
     this.router.navigate(["/updateMeal",id]);
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
 
 }

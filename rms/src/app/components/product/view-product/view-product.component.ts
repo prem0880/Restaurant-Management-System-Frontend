@@ -10,7 +10,9 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class ViewProductComponent implements OnInit {
   viewProduct!:Product[];
   pageOfItems: Array<any> = [];
-  constructor(private router:Router,private productService:ProductService) { }
+  term!:string;
+
+  constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     this.productService.getAllProductByMeal().subscribe( response => {

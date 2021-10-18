@@ -11,8 +11,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class ManageCountryComponent implements OnInit {
   modalOptions: NgbModalOptions; //modal options such as backdrop, backdropClass
-  
   viewCountry!:Country[];
+  pageOfItems: Array<any> = [];
+  term!:string;
 
   constructor(private router:Router,private toast:NotificationService,private modalService:NgbModal,private countryService:CountryService) {
     this.modalOptions = {
@@ -68,5 +69,11 @@ export class ManageCountryComponent implements OnInit {
 
   updateCountry(id:number) {
     this.router.navigate(["/updateCountry",id]);
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    
   }
 }
