@@ -37,12 +37,6 @@ export class UpdateProductComponent implements OnInit {
   }
 
   updateProduct(product:Product) {
-    product.category={
-      "id":Number(product.category as any as number)
-    }
-    product.meal={
-      "id":Number(product.meal as any as number)
-    }
       this.productService.updateProduct(this.id,product).subscribe((response) => {
         if(response.statusCode==200){
           this.toast.showSuccess(response.message);

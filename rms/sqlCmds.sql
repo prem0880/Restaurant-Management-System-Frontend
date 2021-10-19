@@ -41,9 +41,9 @@ select * from orders;
 
 select * from order_item;
 
-delete from orders where id=26;
+delete from orders where id=27;
 
-delete from order_item where id=20;
+delete from order_item where id=21;
 
 
 select * from Login  where email_id="yo";

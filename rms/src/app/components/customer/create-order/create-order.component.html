@@ -88,7 +88,23 @@
 
   <div class="modal-body">
    
-      <input type="number" placeholder="Enter the quantity"  name="quantity" ngModel  #quantity="ngModel" required/>
+      <input type="number" placeholder="Enter the quantity" min=0  name="quantity" ngModel  #quantity="ngModel" required/>
+      <div class="text-danger">
+        <small
+          *ngIf="
+            (quantity.touched) &&
+            quantity.errors?.required 
+          "
+          >Quantity is required</small
+        >
+        <small
+          *ngIf="
+            (quantity.invalid) &&
+             quantity.errors?.min 
+          "
+          >Quantity must be greater than 0</small
+        >
+      </div>
   </div>
 
 
@@ -102,6 +118,7 @@
 
       (click)="getQuantity(quantity.value)"
 
+      [disabled]="quantity.value<=0 "
     >
 
       Confirm

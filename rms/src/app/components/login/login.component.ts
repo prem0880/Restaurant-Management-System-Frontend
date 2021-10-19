@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
             console.log(response.data);
             if(response.statusCode==200){
             if(response.data=="Admin"){
-                 this.toast.showSuccess("Welcome admin!");
+                 this.toast.showSuccess("Logged In Successfully!");
                  this.router.navigate(['admin']);
             }else if(response.data=="Customer"){
                   console.log(response.data);
@@ -32,13 +32,15 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem("email",credential.email);
                   this.router.navigate(['/viewProduct']);
             }else{
-              this.toast.showFailure("Incorrect Credentials");
+              this.toast.showFailure("Incorrect Password");
             }
           }else{
             this.toast.showFailure("Login attempt failed!");
           }
 
-    });
+    },
+    error=>this.toast.showFailure("Login attempt failed!"));
+  
 
   
     }

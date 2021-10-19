@@ -69,6 +69,7 @@
           <div class="form-group col-md-6">
             <label for="countryname">Country</label>
             <select class="form-control"  name="country"  ngModel (ngModelChange)="getState($event)" required>
+              <option value="" selected disabled>Select Country</option>
               <option *ngFor = "let c of country" [value]=c.id>{{ c.name }}</option>
             </select>
           </div>
@@ -76,7 +77,8 @@
         <div class="form-group col-md-6">
           <label for="statename">State</label>
           <select class="form-control"  name="state" ngModel required>
-            <option *ngFor = "let c of state" [value]=c.id>{{ c.name }}</option>
+            <option ngValue="null" selected disabled>Select State</option>
+            <option *ngFor = "let c of state" [ngValue]=c>{{ c.name }}</option>
           </select>
         </div>
         <br>

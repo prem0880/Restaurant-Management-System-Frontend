@@ -38,19 +38,16 @@ export class AddAddressComponent implements OnInit {
     address.customer={
       id:Number(this.id)
     };
-    address.state={
-        id:Number(address.state)
-    };
     console.log(address.state);
     this.addressService.addAddress(address).subscribe((response)=>{
       console.log(address);
       if(response.statusCode==201){
         this.toast.showSuccess(response.message);
+        this.gotoList();
        }
      else{
      this.toast.showFailure(response.message);
      }
-      this.gotoList();
   });
 
   }

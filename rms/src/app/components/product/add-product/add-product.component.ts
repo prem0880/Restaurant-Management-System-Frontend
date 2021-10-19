@@ -13,7 +13,7 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class AddProductComponent implements OnInit {
 
   submitted:boolean=false;
-
+  
   category!:Category[];
 
   meal!:Meal[];
@@ -36,12 +36,6 @@ export class AddProductComponent implements OnInit {
 
 
 addProduct(product:Product) {
-  product.category={
-    "id":Number(product.category as any as number)
-  }
-  product.meal={
-    "id":Number(product.meal as any as number)
-  }
   this.productService.createProduct(product).subscribe((response) => {
     if(response.statusCode==201){
       this.toast.showSuccess(response.message);

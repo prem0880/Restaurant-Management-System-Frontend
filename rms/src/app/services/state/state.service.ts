@@ -14,13 +14,7 @@ export class StateService {
   constructor(private http : HttpClient) { }
 
   createState(state : State):Observable<any> {
-    const stateObj = {
-      name : state.name,
-      country:{
-        id:state.country
-      }
-    }
-    return this.http.post(`${this.baseUrl}`,stateObj );
+    return this.http.post(`${this.baseUrl}`,state);
   }
   
   getStatesByCountry(id:number):Observable<any>{

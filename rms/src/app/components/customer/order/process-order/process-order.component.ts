@@ -39,7 +39,6 @@ export class ProcessOrderComponent implements OnInit {
         console.log(this.address[0].id as any as number)
         console.log(this.address[0].addressLine)
         console.log(this.address[0].city)
-     //   console.log(this.address[0].state.name)
         console.log(this.address[0].pincode)
       })
     })

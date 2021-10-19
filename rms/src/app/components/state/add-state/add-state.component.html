@@ -6,8 +6,8 @@
           <div class="form-group col-md-6">
           <label for="countryname"> Country Name</label>
           <select required class="form-control"  name="country" ngModel  >
-            <option value="" selected disabled>Select Country</option>
-            <option *ngFor = "let c of country" [value]=c.id>{{ c.name }}</option>
+            <option ngValue="null" selected disabled>Select Country</option>
+            <option *ngFor = "let c of country" [ngValue]=c>{{ c.name }}</option>
           </select>
           </div>
           <br>

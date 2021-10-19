@@ -50,9 +50,6 @@ export class UpdateAddressComponent implements OnInit {
     updatedAddress.customer={
       id:Number(this.customerId)
     };
-    updatedAddress.state={
-        id:Number(updatedAddress.state)
-    };
     console.log(updatedAddress);
     this.addressService.updateAddress(this.address.id,updatedAddress).subscribe((response) => {
       console.log(response.message);
