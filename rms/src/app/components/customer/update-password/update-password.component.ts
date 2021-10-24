@@ -44,6 +44,8 @@ export class UpdatePasswordComponent implements OnInit {
         else{
           this.toaster.showFailure(response.message);
         }
+    },error=>{
+      this.toaster.showFailure("Incorrect Current Password,Try again");
     });
 
   }

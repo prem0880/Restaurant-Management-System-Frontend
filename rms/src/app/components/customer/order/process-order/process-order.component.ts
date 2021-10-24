@@ -17,7 +17,7 @@ export class ProcessOrderComponent implements OnInit {
   orderDetail!:Order
   orderDetails!:Order
   customerId:Number|any//any used because of local storage
-  address!:Address[];
+  address:Address=new Address();
   customer:Customer=new Customer();
   
   constructor(private orderService:OrderService,private toast:NotificationService,private router:Router,private addressService:AddressService,private customerService:CustomerService) { }
@@ -36,10 +36,10 @@ export class ProcessOrderComponent implements OnInit {
       this.addressService.getAddressByPhone(this.customer.phoneNumber as any as number).subscribe(response=>{
         this.address=response.data
         console.log(this.address)
-        console.log(this.address[0].id as any as number)
-        console.log(this.address[0].addressLine)
-        console.log(this.address[0].city)
-        console.log(this.address[0].pincode)
+        console.log(this.address.id as any as number)
+        console.log(this.address.addressLine)
+        console.log(this.address.city)
+        console.log(this.address.pincode)
       })
     })
     
@@ -54,7 +54,7 @@ export class ProcessOrderComponent implements OnInit {
       id:this.customerId
     };
     this.orderDetails.address={
-      id:this.address[0].id as any as number
+      id:this.address.id as any as number
     };
     this.orderService.updateOrder(this.orderDetail.id,this.orderDetails).subscribe(response=>{
       console.log(response.message)
