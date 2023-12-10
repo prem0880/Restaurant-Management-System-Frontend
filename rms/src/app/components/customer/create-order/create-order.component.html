@@ -1,0 +1,145 @@
+<app-dashboard></app-dashboard>
+<div>
+  <div class="form-group col-md-4" style="margin-left: 65%;">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div> 
+<br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Tax</th>
+                <th colspan="2" style="text-align: center;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let viewproduct of pageOfItems">
+                <td>{{viewproduct.name}}</td>
+                <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
+                <td>{{viewproduct.description}}</td>
+                <td>{{viewproduct.price}}</td>
+                <td>{{viewproduct.tax}}</td>
+                <td><button class="btn btn-success" (click)="addProduct(mymodal,viewproduct.id)">Add</button></td>
+               </tr>
+        </tbody>
+      </table>
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewProduct |filter:term "
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
+      <br>
+        <br>
+        <table *ngIf='length>0' class="table table-bordered"> 
+            <caption style="text-align: center;"><b><i>Order Item Details</i></b></caption>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let orderedItem of orderedItems">
+                    <td>{{orderedItem.product?.name}}</td>
+                    <td>{{orderedItem.product?.price}}</td> 
+                    <td>{{orderedItem.quantity}}</td>
+                    <td>{{orderedItem.price}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Total Amount</th>
+                    <td>{{order?.totalPrice | number:'1.2-3'}}</td>
+                </tr>
+            </table>
+            <div *ngIf='length>0'>
+                <button id="btn1" style="margin-left: 24cm;" (click)="goToPayment()"  class="btn btn-primary">Confirm Order</button>
+            </div>
+</div>
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-header">
+
+    <h4 class="modal-title" id="modal-basic-title">
+
+      Product Quantity
+    </h4>
+
+    <button
+
+      type="button"
+
+      class="close"
+
+      aria-label="Close"
+
+      (click)="modal.dismiss('Cross click')"
+
+    >
+
+      <span aria-hidden="true">&times;</span>
+
+    </button>
+
+  </div>
+
+  <div class="modal-body">
+   
+      <input type="number" placeholder="Enter the quantity" min=0  name="quantity" ngModel  #quantity="ngModel" required/>
+      <div class="text-danger">
+        <small
+          *ngIf="
+            (quantity.touched) &&
+            quantity.errors?.required 
+          "
+          >Quantity is required</small
+        >
+        <small
+          *ngIf="
+            (quantity.invalid) &&
+             quantity.errors?.min 
+          "
+          >Quantity must be greater than 0</small
+        >
+      </div>
+  </div>
+
+
+  <div class="modal-footer">
+
+    <button
+
+      type="submit"
+
+      class="btn btn-outline-dark"
+
+      (click)="getQuantity(quantity.value)"
+
+      [disabled]="quantity.value<=0 "
+    >
+
+      Confirm
+
+    </button>
+
+    <button
+
+      type="button"
+
+      class="btn btn-outline-warning"
+
+      (click)="modal.dismiss('Dismiss click')"
+
+    >
+
+      Cancel
+
+    </button>
+
+  </div>
+
+</ng-template>
+

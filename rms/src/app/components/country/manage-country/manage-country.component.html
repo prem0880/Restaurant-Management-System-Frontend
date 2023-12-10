@@ -1,0 +1,98 @@
+<app-admin></app-admin>
+<div>
+  <div class="form-group col-md-4" style="margin-left: 65%;">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div> 
+<br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Created On</th>
+                <th>Updated On</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let viewcountry of pageOfItems">
+                <td>{{viewcountry.name}}</td>
+                <td>{{viewcountry.createdOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>{{viewcountry.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td><button (click)="deleteCountry(mymodal,viewcountry.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button></td>
+                <td><button (click)="updateCountry(viewcountry.id)" class="btn btn-success" style="margin-left: 10px">Update</button></td>
+              
+            </tr>
+        </tbody>
+      </table>
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewCountry |filter:term"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
+</div>
+
+<ng-template #mymodal let-modal>
+
+    <div class="modal-header">
+  
+      <h4 class="modal-title" id="modal-basic-title">
+  
+        Are you sure to delete the Country?
+  
+      </h4>
+  
+      <button
+  
+        type="button"
+  
+        class="close"
+  
+        aria-label="Close"
+  
+        (click)="modal.dismiss('Cross click')"
+  
+      >
+  
+        <span aria-hidden="true">&times;</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body">Once it is done, cannot be revert back!</div>
+  
+    <div class="modal-footer">
+  
+      <button
+  
+        type="button"
+  
+        class="btn btn-outline-dark"
+  
+        (click)="modal.close('Save click')"
+  
+      >
+  
+        Confirm
+  
+      </button>
+  
+      <button
+  
+        type="button"
+  
+        class="btn btn-outline-warning"
+  
+        (click)="modal.dismiss('Dismiss click')"
+  
+      >
+  
+        Cancel
+  
+      </button>
+  
+    </div>
+  
+  </ng-template>

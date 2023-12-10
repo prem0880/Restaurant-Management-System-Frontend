@@ -1,0 +1,41 @@
+<app-dashboard></app-dashboard>
+<div>
+  <div class="form-group col-md-4" style="margin-left: 65%;">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div> 
+<br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Tax</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Meal </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let viewproduct of pageOfItems">
+                <td>{{viewproduct.name}}</td>
+                <td><img [src]=viewproduct.image width="200px" height="200px" alt="image not loaded"/></td>
+                <td>{{viewproduct.description}}</td>
+                <td>{{viewproduct.price}}</td>
+                <td>{{viewproduct.tax}}</td>
+                <td>{{viewproduct.type}}</td>
+                <td>{{viewproduct.category.name}}</td>
+                <td>{{viewproduct.meal.name}}</td>
+              </tr>
+        </tbody>
+      </table>
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewProduct |filter:term"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
+</div>
+
