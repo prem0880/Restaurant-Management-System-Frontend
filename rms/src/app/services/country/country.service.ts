@@ -1,42 +1,38 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/country';
 
   constructor(private http: HttpClient) { }
 
-  createCountry(country : Country){
-    return this.http.post(`${this.baseUrl}/addCountry`, country,{responseType: 'text'});
+  createCountry(country : Country):Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, country);
   }
-  getAllCountry() : Observable<any>{
-    return this.http.get<Country>(`${this.baseUrl}/getAllCountry`);
+  getAllCountry() : Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
-  deleteCountry(id:number){
-    console.log(id);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteCountry/${id}`, { headers, responseType: 'text'});
+  deleteCountry(id:number):Observable<HttpResponseStatus>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  updateCountry(id:number,country:Country){
-    console.log(id);
-    console.log(country);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateCountry/${id}`, country, { headers, responseType: 'text'});
+  updateCountry(id:number,country:Country):Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, country);
   }
 
-  getCountryById(id:number){
-    return this.http.get(`${this.baseUrl}/getCountry/${id}`);
+  getCountryById(id:number):Observable<any>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 }
 export class Country{
-  id:any;
-  name:any;
+  id!:number;
+  name!:string;
   createdOn?:string;
   updatedOn?:string;
 }

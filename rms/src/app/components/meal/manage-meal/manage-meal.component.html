@@ -1,26 +1,98 @@
 <app-admin></app-admin>
 <div>
-    <table class="table">
+  <div class="form-group col-md-4" style="margin-left: 65%;">
+    <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div> 
+<br>
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Created On</th>
-                <th>Updated On</th>
+                <th>Updated On</th> 
                 <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let viewmeal of viewMeal">
-                <td>{{viewmeal.id}}</td>
+            <tr *ngFor="let viewmeal of pageOfItems">
                 <td>{{viewmeal.name}}</td>
                 <td>{{viewmeal.createdOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewmeal.updatedOn| date: 'dd-MM-yyyy hh:mm:ss'}}</td>
-                <td><button (click)="deleteMeal(viewmeal.id)" class="btn btn-danger" >Delete</button></td>
+                <td><button (click)="deleteMeal(mymodal,viewmeal.id)" class="btn btn-danger" >Delete</button></td>
                 <td><button (click)="updateMeal(viewmeal.id)" class="btn btn-success">Update</button></td>
               </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewMeal |filter:term"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 
+
+<ng-template #mymodal let-modal>
+
+    <div class="modal-header">
+  
+      <h4 class="modal-title" id="modal-basic-title">
+  
+        Are you sure to delete the Meal?
+  
+      </h4>
+  
+      <button
+  
+        type="button"
+  
+        class="close"
+  
+        aria-label="Close"
+  
+        (click)="modal.dismiss('Cross click')"
+  
+      >
+  
+        <span aria-hidden="true">&times;</span>
+  
+      </button>
+  
+    </div>
+  
+    <div class="modal-body">Once it is done, cannot be revert back!</div>
+  
+    <div class="modal-footer">
+  
+      <button
+  
+        type="button"
+  
+        class="btn btn-outline-dark"
+  
+        (click)="modal.close('Save click')"
+  
+      >
+  
+        Confirm
+  
+      </button>
+  
+      <button
+  
+        type="button"
+  
+        class="btn btn-outline-warning"
+  
+        (click)="modal.dismiss('Dismiss click')"
+  
+      >
+  
+        Cancel
+  
+      </button>
+  
+    </div>
+  
+  </ng-template>

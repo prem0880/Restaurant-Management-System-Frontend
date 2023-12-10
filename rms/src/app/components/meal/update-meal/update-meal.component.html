@@ -1,13 +1,29 @@
 <app-admin></app-admin>
-<div [hidden]="submitted">
-    <form #userForm="ngForm" (ngSubmit)='updateMeal(userForm.value)' style=" margin-left: 400px;">
+<div >
+    <form #userForm="ngForm" (ngSubmit)='userForm.form.valid && updateMeal(userForm.value)' style=" margin-left: 400px;">
         <h3 style="margin-left: 130px;">Update Meal</h3>
         <br>    
           <div class="form-group col-md-6">
             <label for="mealname">Enter Meal Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Meal name"  ngModel  [(ngModel)]="meal.name" [value]="meal.name" required>
+            <input type="text" class="form-control" name="name" pattern="^[a-zA-Z ]*$" #name="ngModel" placeholder="Enter Meal name"  ngModel  [(ngModel)]="meal.name" [value]="meal.name" required>
+        </div>
+        <div class="text-danger">
+          <small
+            *ngIf="
+              (name.touched || userForm.submitted) &&
+              name.errors?.required
+            "
+            >Meal Name is required</small
+          >
+          <small
+          *ngIf="
+            (name.touched || name.dirty) &&
+            name.errors?.pattern
+          "
+          >Meal name can contain alphabets,space</small
+        >
         </div>
           <br>
-        <button type="submit" [disabled]="userForm.invalid" style="margin-left: 150px;" class="btn btn-primary">Update Meal</button>
+        <button type="submit"  style="margin-left: 150px;" class="btn btn-primary">Update Meal</button>
       </form>
 </div>

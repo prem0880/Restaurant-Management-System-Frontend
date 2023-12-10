@@ -12,25 +12,29 @@
         <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Get State</button>
     </form>
     <br>
-    <table class="table" *ngIf="display">
+    <table class="table table-bordered" *ngIf="display">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Created On</th>
                 <th>Updated On</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let viewstate of viewState">
-                <td>{{viewstate.id}}</td>
+            <tr *ngFor="let viewstate of pageOfItems">
                 <td>{{viewstate.name}}</td>
                 <td>{{viewstate.createdOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
                 <td>{{viewstate.updatedOn | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
               </tr>
         </tbody>
       </table>
-      
+      <div  style="margin-left: 12cm;">
+        <jw-pagination
+          [items]="viewState"
+          [pageSize]=2
+          (changePage)="onChangePage($event)"
+        ></jw-pagination>
+      </div>
 </div>
 
 

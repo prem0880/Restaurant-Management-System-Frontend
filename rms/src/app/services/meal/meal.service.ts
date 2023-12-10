@@ -1,41 +1,44 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/meal';
 
   constructor(private http: HttpClient) { }
 
-  createMeal(meal: Meal) {
-    return this.http.post(`${this.baseUrl}/addMeal`, meal, { responseType: 'text' });
+  createMeal(meal: Meal): Observable<HttpResponseStatus> {
+    return this.http.post(`${this.baseUrl}`, meal);
   }
 
 
-  getAllMeal(): Observable<any> {
-    return this.http.get<Meal>(`${this.baseUrl}/getAllMeal`);
+  getAllMeal(): Observable<HttpResponseStatus> {
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getMealById(id:number){
-    return this.http.get(`${this.baseUrl}/getMeal/${id}`);
+  getMealById(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  deleteMeal(id: number) {
-    const headers = new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteMeal/${id}`, { headers, responseType: 'text' });
+  getMealByName(meal:string): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/name/${meal}`);
   }
 
-  updateMeal(id: number, meal: Meal) {
-    const headers = new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateMeal/${id}`, meal, { headers, responseType: 'text' });
+  deleteMeal(id: number): Observable<HttpResponseStatus> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  updateMeal(id: number, meal: Meal): Observable<HttpResponseStatus> {
+    return this.http.put(`${this.baseUrl}/${id}`, meal);
   }
 }
 export class Meal {
-  id?: number;
+  id!: number;
   name?: string;
   createdOn?:string;
   updatedOn?:string;

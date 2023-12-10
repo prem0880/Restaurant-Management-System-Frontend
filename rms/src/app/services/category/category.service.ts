@@ -1,48 +1,42 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { HttpResponseStatus } from '../response/HttpResponseStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private baseUrl = 'http://localhost:8083/api';
+  private baseUrl = 'http://localhost:8083/category';
 
   constructor(private http: HttpClient) { }
 
-  createCategory(category : Category){
-
-    return this.http.post(`${this.baseUrl}/addCategory`, category,{responseType: 'text'});
+  createCategory(category : Category):Observable<HttpResponseStatus>{
+    return this.http.post(`${this.baseUrl}`, category);
   }
 
-
-  getAllCategory() : Observable<any>{
-    return this.http.get<Category>(`${this.baseUrl}/getAllCategory`);
+  getAllCategory() : Observable<HttpResponseStatus>{
+    return this.http.get<HttpResponseStatus>(`${this.baseUrl}`);
   }
 
-  getCategoryById(id:number){
-    return this.http.get(`${this.baseUrl}/getCategory/${id}`);
+  getCategoryById(id:number): Observable<HttpResponseStatus>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  deleteCategory(id:number){
-    console.log(id);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.delete(`${this.baseUrl}/deleteCategory/${id}`, { headers, responseType: 'text'});
+  deleteCategory(id:number): Observable<HttpResponseStatus>{
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  updateCategory(id:number,category:Category){
-    console.log(id);
-    console.log(category);
-    const headers =new HttpHeaders().set('Content_Type', 'text/plain ;charset=utf-8');
-    return this.http.put(`${this.baseUrl}/updateCategory/${id}`, category, { headers, responseType: 'text'});
+  updateCategory(id:number,category:Category): Observable<HttpResponseStatus>{
+    return this.http.put(`${this.baseUrl}/${id}`, category);
   }
 
 
 }
 export class Category{
-  id?:number;
-  name?:string;
+  id!:number;
+  name?:string;//if made (!),do assign the value null at product.category
   createdOn?:string;
   updatedOn?:string;
 }

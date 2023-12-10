@@ -1,13 +1,29 @@
 <app-admin></app-admin>
-<div [hidden]="submitted">
-    <form #userForm="ngForm" (ngSubmit)='addCategory(userForm.value)' style="margin-top: 50px; margin-left: 400px;">
+<div>
+    <form #userForm="ngForm" (ngSubmit)='userForm.form.valid && addCategory(userForm.value)' style="margin-top: 50px; margin-left: 400px;">
         <h3 style="margin-left: 130px;">Add Category</h3>
         <br>    
           <div class="form-group col-md-6">
-            <label for="categoryname">Enter Category Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Enter Category name"  ngModel required>
+            <b><label for="categoryname">Enter Category Name</label></b>
+            <input type="text" class="form-control" name="name" placeholder="Enter Category name" pattern="^[a-zA-Z ]*$" #name="ngModel" ngModel required>
+        </div>
+        <div class="text-danger">
+          <small
+            *ngIf="
+              (name.touched || userForm.submitted) &&
+              name.errors?.required
+            "
+            >Category Name is required</small
+          >
+          <small
+          *ngIf="
+            (name.touched || name.dirty) &&
+            name.errors?.pattern
+          "
+          >Category name can contain alphabets,space</small
+        >
         </div>
           <br>
-        <button type="submit" style="margin-left: 150px;" [disabled]="userForm.invalid" class="btn btn-primary">Add Category</button>
+     <button type="submit" style="margin-left: 150px;" class="btn btn-primary">Add Category</button>
       </form>
 </div>

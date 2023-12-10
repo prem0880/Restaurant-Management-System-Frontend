@@ -1,0 +1,41 @@
+<app-admin></app-admin>
+<div>
+    <table class="table table-bordered" *ngIf="length>0 ;else elseBlock">
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>City</th>
+                <th>Pincode</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Total Price</th>
+                <th>Mode Of Payment</th>
+                <th>Date</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let vieworder of viewOrder">
+            
+            <tr>
+               
+                <td>{{vieworder.customer.name}}</td>
+                <td>{{vieworder.address.city}}</td>
+                <td>{{vieworder.address.pincode}}</td>
+                <td>{{vieworder.address?.state?.name}}</td>
+                <td>{{vieworder.address.state?.country?.name}}</td>
+                <td>{{vieworder.totalPrice}}</td>
+                <td>{{vieworder.modeOfPayment}}</td>
+                <td>{{vieworder.date | date: 'dd-MM-yyyy hh:mm:ss'}}</td>
+                <td>
+                      <button id="{{vieworder.id}}" type="button" class="btn btn-primary" (click)="approve(vieworder)">Approve</button>
+                      <button id="{{vieworder.id}}" type="button" class="btn btn-danger" style="margin-left:10px;" (click)="deny(vieworder)">Deny</button>
+                  </td>
+                </tr>
+        </tbody>
+      </table>
+      
+</div>
+<ng-template #elseBlock>
+    <h5 style="text-align: center; color:darkviolet ; "  > No Orders to Process </h5> 
+</ng-template>
+

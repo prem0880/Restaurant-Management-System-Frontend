@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/services/category/category.service';
-import { MealService } from 'src/app/services/meal/meal.service';
+import { Router } from '@angular/router';
+import { Category, CategoryService } from 'src/app/services/category/category.service';
+import { Meal, MealService } from 'src/app/services/meal/meal.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Product, ProductService } from 'src/app/services/product/product.service';
 
 @Component({
@@ -11,51 +13,38 @@ import { Product, ProductService } from 'src/app/services/product/product.servic
 export class AddProductComponent implements OnInit {
 
   submitted:boolean=false;
+  
+  category!:Category[];
 
-  category:any=[];
+  meal!:Meal[];
 
-  meal:any=[];
-
-  categoryObj: any=[] ;
-
-  mealObj:any=[];
-
-  constructor(private categoryService:CategoryService,private mealService:MealService,private productService:ProductService) { }
+  constructor(private categoryService:CategoryService,private router:Router,private toast:NotificationService,private mealService:MealService,private productService:ProductService) { }
 
   ngOnInit(): void {
 
     this.categoryService.getAllCategory().subscribe( response => {
-      this.category = response;
+      this.category = response.data;
   });
 
   this.mealService.getAllMeal().subscribe( response => {
-    this.meal = response;
+    this.meal = response.data;
 
   });
   
 }
 
-getCategory(id:number){
-
-this.categoryObj={"id":id};
-
-}
-
-getMeal(id:number){
-this.mealObj={"id":id}
-
-}
 
 
 addProduct(product:Product) {
-  this.getCategory(product.category as any as number);
-  this.getMeal(product.meal as any as number);
-  product.category=this.categoryObj;
-  product.meal=this.mealObj;
   this.productService.createProduct(product).subscribe((response) => {
-    window.alert(response);
-  },
-  error=>window.alert(error.error));
+    if(response.statusCode==201){
+      this.toast.showSuccess(response.message);
+      this.router.navigate(['/manageProduct']);
+ }
+else{
+   this.toast.showFailure(response.message);
+ }
+  });
 }
 
 }
